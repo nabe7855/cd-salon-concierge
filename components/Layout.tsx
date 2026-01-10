@@ -10,13 +10,14 @@ import {
   Phone,
   X,
 } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { NAV_LINKS } from "../constants";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   return (
     <div className="min-h-screen flex flex-col font-sans overflow-x-hidden">
@@ -28,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* Header */}
       <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-sage-100 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <div className="bg-sage-500 p-1.5 md:p-2 rounded-full group-hover:bg-sage-600 transition-colors">
               <Leaf className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </div>
@@ -47,9 +48,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`text-sm font-medium hover:text-sage-600 transition-colors ${
-                  location.pathname === link.path
+                  pathname === link.path
                     ? "text-sage-600 border-b-2 border-sage-500"
                     : "text-gray-600"
                 }`}
@@ -94,7 +95,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className="text-gray-700 text-lg py-2 border-b border-sage-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -150,7 +151,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Inquiry Button */}
           <Link
-            to="/contact"
+            href="/contact"
             className="flex-1 bg-sage-600 text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center px-1 hover:opacity-90 transition-opacity"
           >
             <span className="text-[9px] md:text-[10px] font-bold leading-tight">
@@ -201,7 +202,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 {NAV_LINKS.slice(1).map((link) => (
                   <li key={link.path}>
                     <Link
-                      to={link.path}
+                      href={link.path}
                       className="hover:text-sage-400 transition-colors flex items-center gap-1"
                     >
                       <ChevronRight className="w-3 h-3" /> {link.name}
@@ -229,7 +230,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   <p className="text-xs">受付時間: 9:30 - 翌6:00</p>
                 </div>
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="bg-sage-600 hover:bg-sage-700 p-4 rounded-xl flex flex-col justify-center transition-colors"
                 >
                   <div className="flex items-center gap-3 mb-2">
@@ -259,13 +260,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               reserved.
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-6">
-              <Link to="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 特定商取引法に基づく表記
               </Link>
-              <Link to="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 プライバシーポリシー
               </Link>
-              <Link to="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 利用規約
               </Link>
             </div>
