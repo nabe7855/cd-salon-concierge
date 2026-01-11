@@ -92,103 +92,70 @@ const TopPage: React.FC = () => {
     <Layout>
       <div className="font-sans text-botanical-text bg-botanical-bg">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-16 pb-24 md:pt-32 md:pb-40">
-          {/* Background Decor */}
-          <div className="absolute top-0 right-0 w-[80%] h-full bg-gradient-to-l from-botanical-primary-light/10 to-transparent rounded-l-[10rem] -z-10 transform translate-x-1/4"></div>
-          <div className="absolute top-20 left-10 w-64 h-64 bg-botanical-accent/5 rounded-full blur-3xl -z-10"></div>
+        <section className="relative min-h-[90vh] flex items-center pt-20 pb-20 overflow-hidden">
+          {/* Background Image & Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/images/hero-bg-v2.png"
+              alt="Call Center"
+              className="w-full h-full object-cover object-center lg:object-[center_right]"
+            />
+            {/* Gradient Overlay for Legibility (Lighter on the left to show background but keep text readable) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+          </div>
 
-          <div className="container-custom grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in relative z-10">
-              <span className="inline-flex items-center gap-2 bg-white border border-botanical-primary/20 text-botanical-primary px-4 py-1.5 rounded-full text-xs font-bold tracking-widest shadow-sm">
-                <Leaf
-                  size={12}
-                  className="fill-botanical-primary stroke-none"
-                />
+          <div className="container-custom relative z-10 w-full">
+            <div className="max-w-2xl lg:ml-0 animate-fade-in">
+              <span className="inline-flex items-center gap-2 bg-botanical-primary/90 text-white px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-widest shadow-sm mb-6">
+                <Leaf size={12} className="fill-white stroke-none" />
                 業界No.1の応答率・継続率
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-botanical-primary leading-[1.2]">
+
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading text-botanical-primary leading-[1.1] mb-6">
                 メンズエステ専門
                 <br />
-                <span className="text-botanical-cta relative inline-block">
-                  電話代行サービス
-                  <span className="absolute bottom-1 left-0 w-full h-3 bg-botanical-cta/10 -z-10 transform -rotate-1 rounded-sm"></span>
-                </span>
+                <span className="text-botanical-cta">電話代行サービス</span>
               </h2>
-              <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+
+              <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed mb-10 max-w-xl">
                 お客様を逃さない
                 <span className="text-botanical-primary font-bold">
                   24時間365日対応
                 </span>
                 。<br />
-                受付業務はプロに任せて、
-                <br className="md:hidden" />
-                本業のサロン経営に集中できます。
+                受付業務はプロに任せて、本業のサロン経営に集中できます。
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link
                   href="/contact"
-                  className="btn-cta text-lg px-8 py-4 shadow-xl hover:shadow-2xl ring-4 ring-botanical-cta/10"
+                  className="btn-cta text-lg px-10 py-4 shadow-xl hover:shadow-2xl ring-4 ring-botanical-cta/20 transform hover:-translate-y-1 transition-all"
                 >
                   今すぐ無料相談する
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  href="#pricing"
-                  className="btn-outline text-lg px-8 py-4 bg-white hover:bg-botanical-primary hover:text-white"
+                  href="/contact"
+                  className="bg-white border-2 border-botanical-primary/30 text-botanical-primary font-bold py-4 px-10 rounded-full hover:bg-botanical-primary/5 transition-all text-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-1"
                 >
                   資料を請求する
+                  <ArrowRight size={20} className="opacity-50" />
                 </Link>
               </div>
 
-              <div className="pt-6 flex items-center gap-6 text-xs text-gray-500 font-medium">
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 size={14} className="text-botanical-cta" />{" "}
+              <div className="flex flex-wrap items-center gap-6 text-[11px] md:text-xs text-gray-700 font-bold bg-white/30 backdrop-blur-sm p-3 rounded-2xl w-fit">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={16} className="text-botanical-cta" />
                   初期費用0円
                 </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 size={14} className="text-botanical-cta" />{" "}
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={16} className="text-botanical-cta" />
                   即日スタート可
                 </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 size={14} className="text-botanical-cta" />{" "}
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={16} className="text-botanical-cta" />
                   全国対応
                 </span>
-              </div>
-            </div>
-
-            <div className="relative hidden lg:block">
-              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-[6px] border-white transform rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
-                <img
-                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1000"
-                  alt="Modern Relaxing Salon Interior"
-                  className="w-full h-[650px] object-cover hover:scale-105 transition-transform duration-[2s]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-              </div>
-              {/* Floating Stats */}
-              <div className="absolute bottom-12 -left-12 bg-white/95 backdrop-blur p-6 rounded-2xl shadow-xl border border-gray-100 z-20 max-w-xs animate-bounce-slow">
-                <div className="flex items-center gap-4">
-                  <div className="bg-botanical-bg p-4 rounded-xl text-botanical-primary">
-                    <ShieldCheck size={28} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
-                      信頼の実績
-                    </p>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-bold text-botanical-primary font-heading">
-                        99.6
-                      </span>
-                      <span className="text-sm font-bold text-botanical-primary">
-                        %
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500 font-bold">
-                      受電応答率
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
