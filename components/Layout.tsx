@@ -269,6 +269,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Link href="/" className="hover:text-white">
                 利用規約
               </Link>
+              <Link href="/login" className="hover:text-white">
+                管理者ログイン
+              </Link>
             </div>
           </div>
         </div>
