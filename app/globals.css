@@ -18,6 +18,19 @@
   --color-salon-blue: #3a5f56;
   --color-salon-light: #f9fbf9;
 
+  /* Sage Color Palette */
+  --color-sage-50: #f9fbf9;
+  --color-sage-100: #f0f4f2;
+  --color-sage-200: #e0e9e5;
+  --color-sage-300: #bfd3cb;
+  --color-sage-400: #9ab4ab;
+  --color-sage-500: #7c9a8c;
+  --color-sage-600: #608075;
+  --color-sage-700: #4b665c;
+  --color-sage-800: #3a5f56;
+  --color-sage-900: #2f4d46;
+  --color-sage-950: #1d2d29;
+
   /* Mobile-first spacing utilities */
   --spacing-section-mobile: 4rem;
   --spacing-section-desktop: 6rem;
