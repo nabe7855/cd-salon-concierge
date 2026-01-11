@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/utils/supabase/client";
 import {
   ChevronRight,
   Download,
@@ -9,69 +10,61 @@ import {
   Search,
   Trash2,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const InquiriesAdminPage: React.FC = () => {
-  const [selectedInquiry, setSelectedInquiry] = useState<number | null>(null);
+  const [selectedInquiry, setSelectedInquiry] = useState<string | null>(null);
+  const [inquiries, setInquiries] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
 
-  const inquiries = [
-    {
-      id: 1,
-      name: "佐藤 健一",
-      company: "佐藤ヘアサロン",
-      email: "sato@example.com",
-      date: "2024-01-11",
-      status: "未読",
-      category: "導入相談",
-    },
-    {
-      id: 2,
-      name: "田中 舞",
-      company: "Salon de Tanaka",
-      email: "tanaka@example.com",
-      date: "2024-01-10",
-      status: "返信済",
-      category: "料金について",
-    },
-    {
-      id: 3,
-      name: "鈴木 一郎",
-      company: "鈴木メンズエステ",
-      email: "suzuki@example.com",
-      date: "2024-01-09",
-      status: "保留",
-      category: "システム連携",
-    },
-    {
-      id: 4,
-      name: "高橋 智子",
-      company: "ビューティー高橋",
-      email: "takahashi@example.com",
-      date: "2024-01-08",
-      status: "未読",
-      category: "その他",
-    },
-    {
-      id: 5,
-      name: "伊藤 淳",
-      company: "イトウリラクゼーション",
-      email: "ito@example.com",
-      date: "2024-01-07",
-      status: "返信済",
-      category: "導入相談",
-    },
-  ];
+  useEffect(() => {
+    fetchInquiries();
+  }, []);
+
+  const fetchInquiries = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from("inquiries")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching inquiries:", error);
+    } else {
+      setInquiries(data || []);
+    }
+    setIsLoading(false);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
+      case "new":
       case "未読":
         return "bg-red-50 text-red-500 border-red-100";
+      case "replied":
       case "返信済":
         return "bg-green-50 text-green-500 border-green-100";
+      case "pending":
       case "保留":
         return "bg-orange-50 text-orange-500 border-orange-100";
       default:
         return "bg-gray-50 text-gray-500 border-gray-100";
+    }
+  };
+
+  const formatStatus = (status: string) => {
+    switch (status) {
+      case "new":
+        return "未読";
+      case "replied":
+        return "返信済";
+      case "pending":
+        return "保留";
+      case "archived":
+        return "アーカイブ";
+      default:
+        return status;
     }
   };
 
@@ -138,44 +131,70 @@ const InquiriesAdminPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {inquiries.map((inquiry) => (
-                  <tr
-                    key={inquiry.id}
-                    className={`hover:bg-salon-light/30 transition-colors cursor-pointer ${
-                      selectedInquiry === inquiry.id ? "bg-salon-light/50" : ""
-                    }`}
-                    onClick={() => setSelectedInquiry(inquiry.id)}
-                  >
-                    <td className="px-6 py-6">
-                      <p className="text-sm font-bold text-gray-800">
-                        {inquiry.name}
-                      </p>
-                      <p className="text-[10px] text-gray-400">
-                        {inquiry.company}
-                      </p>
-                    </td>
-                    <td className="px-6 py-6 hidden md:table-cell text-xs text-gray-500">
-                      {inquiry.category}
-                    </td>
-                    <td className="px-6 py-6">
-                      <span
-                        className={`text-[10px] font-bold px-2 py-1 rounded-lg border ${getStatusColor(
-                          inquiry.status
-                        )}`}
-                      >
-                        {inquiry.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-6 hidden sm:table-cell text-xs text-gray-400">
-                      {inquiry.date}
-                    </td>
-                    <td className="px-6 py-6 text-right">
-                      <button className="p-2 text-gray-400 hover:text-gray-600">
-                        <MoreVertical size={16} />
-                      </button>
+                {isLoading ? (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-6 py-10 text-center text-gray-400"
+                    >
+                      読み込み中...
                     </td>
                   </tr>
-                ))}
+                ) : inquiries.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-6 py-10 text-center text-gray-400"
+                    >
+                      お問い合わせはありません
+                    </td>
+                  </tr>
+                ) : (
+                  inquiries.map((inquiry) => (
+                    <tr
+                      key={inquiry.id}
+                      className={`hover:bg-salon-light/30 transition-colors cursor-pointer ${
+                        selectedInquiry === inquiry.id
+                          ? "bg-salon-light/50"
+                          : ""
+                      }`}
+                      onClick={() => setSelectedInquiry(inquiry.id)}
+                    >
+                      <td className="px-6 py-6">
+                        <p className="text-sm font-bold text-gray-800">
+                          {inquiry.contact_name}
+                        </p>
+                        <p className="text-[10px] text-gray-400">
+                          {inquiry.salon_name}
+                        </p>
+                      </td>
+                      <td className="px-6 py-6 hidden md:table-cell text-xs text-gray-500">
+                        {Array.isArray(inquiry.inquiry_items)
+                          ? inquiry.inquiry_items.join(", ")
+                          : "未設定"}
+                      </td>
+                      <td className="px-6 py-6">
+                        <span
+                          className={`text-[10px] font-bold px-2 py-1 rounded-lg border ${getStatusColor(
+                            inquiry.status
+                          )}`}
+                        >
+                          {formatStatus(inquiry.status)}
+                        </span>
+                      </td>
+                      <td className="px-6 py-6 hidden sm:table-cell text-xs text-gray-400">
+                        {inquiry.created_at
+                          ? new Date(inquiry.created_at).toLocaleDateString()
+                          : ""}
+                      </td>
+                      <td className="px-6 py-6 text-right">
+                        <button className="p-2 text-gray-400 hover:text-gray-600">
+                          <MoreVertical size={16} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -184,58 +203,65 @@ const InquiriesAdminPage: React.FC = () => {
         {/* Detail Panel */}
         <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-8 h-fit lg:sticky lg:top-32">
           {selectedInquiry ? (
-            <div className="space-y-8 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between">
-                <span
-                  className={`text-[10px] font-bold px-3 py-1 rounded-full border ${getStatusColor(
-                    inquiries.find((i) => i.id === selectedInquiry)?.status ||
-                      ""
-                  )}`}
-                >
-                  {inquiries.find((i) => i.id === selectedInquiry)?.status}
-                </span>
-                <div className="flex gap-2">
-                  <button className="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                    <Trash2 size={18} />
+            (() => {
+              const inquiry = inquiries.find((i) => i.id === selectedInquiry);
+              if (!inquiry) return null;
+              return (
+                <div className="space-y-8 animate-in fade-in duration-300">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`text-[10px] font-bold px-3 py-1 rounded-full border ${getStatusColor(
+                        inquiry.status
+                      )}`}
+                    >
+                      {formatStatus(inquiry.status)}
+                    </span>
+                    <div className="flex gap-2">
+                      <button className="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                      {inquiry.contact_name}
+                    </h3>
+                    <p className="text-sm text-gray-400 flex items-center gap-1">
+                      <Mail size={14} /> {inquiry.email}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      {inquiry.salon_name} ({inquiry.prefecture})
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="p-4 bg-gray-50 rounded-2xl">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
+                        Items
+                      </p>
+                      <p className="text-sm text-gray-700">
+                        {Array.isArray(inquiry.inquiry_items)
+                          ? inquiry.inquiry_items.join(", ")
+                          : "未設定"}
+                      </p>
+                    </div>
+                    <div className="p-4 bg-gray-50 rounded-2xl">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
+                        Content
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                        {inquiry.content || "内容なし"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button className="w-full bg-salon-pink text-white py-4 rounded-2xl font-bold shadow-lg shadow-salon-pink/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                    返信を作成する <ChevronRight size={18} />
                   </button>
                 </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">
-                  {inquiries.find((i) => i.id === selectedInquiry)?.name}
-                </h3>
-                <p className="text-sm text-gray-400 flex items-center gap-1">
-                  <Mail size={14} />{" "}
-                  {inquiries.find((i) => i.id === selectedInquiry)?.email}
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="p-4 bg-gray-50 rounded-2xl">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
-                    Category
-                  </p>
-                  <p className="text-sm text-gray-700">
-                    {inquiries.find((i) => i.id === selectedInquiry)?.category}
-                  </p>
-                </div>
-                <div className="p-4 bg-gray-50 rounded-2xl">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
-                    Content
-                  </p>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    初めまして。現在メンズエステの新規オープンを検討しております。
-                    <br />
-                    電話代行サービスの導入費用や、システムとの連携について詳しくお伺いしたいです。
-                  </p>
-                </div>
-              </div>
-
-              <button className="w-full bg-salon-pink text-white py-4 rounded-2xl font-bold shadow-lg shadow-salon-pink/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                返信を作成する <ChevronRight size={18} />
-              </button>
-            </div>
+              );
+            })()
           ) : (
             <div className="h-96 flex flex-col items-center justify-center text-center">
               <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-gray-200 mb-4">

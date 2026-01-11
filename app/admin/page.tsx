@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/utils/supabase/client";
 import {
   ArrowUpRight,
   Clock,
@@ -9,28 +10,62 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const AdminDashboard: React.FC = () => {
+  const [counts, setCounts] = useState({
+    inquiries: 0,
+    partners: 0,
+    blog: 0,
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    setIsLoading(true);
+    const [inq, part, blg] = await Promise.all([
+      supabase
+        .from("inquiries")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new"),
+      supabase
+        .from("partner_applications")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "pending"),
+      supabase.from("blog_posts").select("*", { count: "exact", head: true }),
+    ]);
+
+    setCounts({
+      inquiries: inq.count || 0,
+      partners: part.count || 0,
+      blog: blg.count || 0,
+    });
+    setIsLoading(false);
+  };
+
   const stats = [
     {
       name: "未読お問い合わせ",
-      value: "12",
-      trend: "+3",
+      value: counts.inquiries.toString(),
+      trend: "New",
       icon: MessageSquare,
       color: "bg-blue-500",
     },
     {
-      name: "今月の募集件数",
-      value: "45",
-      trend: "+12%",
+      name: "審査待ちパートナー",
+      value: counts.partners.toString(),
+      trend: "Pending",
       icon: Users,
       color: "bg-salon-pink",
     },
     {
-      name: "ブログ総表示回数",
-      value: "2,480",
-      trend: "+8%",
+      name: "公開ブログ記事",
+      value: counts.blog.toString(),
+      trend: "Total",
       icon: TrendingUp,
       color: "bg-salon-gold",
     },
@@ -38,28 +73,16 @@ const AdminDashboard: React.FC = () => {
 
   const recentActivities = [
     {
-      title: "新規お問い合わせ",
-      user: "山田 美容室 様",
-      time: "2時間前",
-      status: "unread",
-    },
-    {
-      title: "ブログ記事公開",
-      user: "和田 (編集部)",
-      time: "5時間前",
-      status: "published",
-    },
-    {
-      title: "協力会社応募",
-      user: "株式会社テックプロ 様",
-      time: "1日前",
-      status: "review",
-    },
-    {
-      title: "お問い合わせ返信完了",
-      user: "佐藤 (スタッフ)",
-      time: "1日前",
+      title: "データベース連携完了",
+      user: "System",
+      time: "現在",
       status: "done",
+    },
+    {
+      title: "管理画面の初期化",
+      user: "Admin",
+      time: "1時間前",
+      status: "published",
     },
   ];
 

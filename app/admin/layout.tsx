@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/utils/supabase/client";
 import {
   Bell,
   FileText,
@@ -20,6 +21,13 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/login");
+    router.refresh();
+  };
 
   const navItems = [
     { name: "ダッシュボード", href: "/admin", icon: LayoutDashboard },
@@ -102,7 +110,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               設定
             </Link>
             <button
-              onClick={() => router.push("/login")}
+              onClick={handleLogout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-red-500 hover:bg-red-50 transition-all"
             >
               <LogOut size={18} />

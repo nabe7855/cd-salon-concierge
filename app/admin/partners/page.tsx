@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/utils/supabase/client";
 import {
   Briefcase,
   ExternalLink,
@@ -9,54 +10,59 @@ import {
   Search,
   User,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const PartnersAdminPage: React.FC = () => {
-  const [selectedPartner, setSelectedPartner] = useState<number | null>(null);
+  const [selectedPartner, setSelectedPartner] = useState<string | null>(null);
+  const [partners, setPartners] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
 
-  const partners = [
-    {
-      id: 1,
-      company: "TechNext株式会社",
-      url: "https://technext.example.com",
-      contact: "山田 太郎",
-      email: "yamada@technext.com",
-      phone: "03-1234-5678",
-      date: "2024-01-11",
-      status: "審査中",
-    },
-    {
-      id: 2,
-      company: "WebCreative合同会社",
-      url: "https://webcreative.example.com",
-      contact: "佐藤 花子",
-      email: "sato@webcreative.com",
-      phone: "090-8765-4321",
-      date: "2024-01-10",
-      status: "承認済",
-    },
-    {
-      id: 3,
-      company: "SystemSolution Inc.",
-      url: "https://syssol.example.com",
-      contact: "田中 健一",
-      email: "tanaka@syssol.com",
-      phone: "050-1122-3344",
-      date: "2024-01-08",
-      status: "却下",
-    },
-  ];
+  useEffect(() => {
+    fetchPartners();
+  }, []);
+
+  const fetchPartners = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from("partner_applications")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching partners:", error);
+    } else {
+      setPartners(data || []);
+    }
+    setIsLoading(false);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
+      case "pending":
       case "審査中":
         return "bg-blue-50 text-blue-500 border-blue-100";
+      case "approved":
       case "承認済":
         return "bg-green-50 text-green-500 border-green-100";
+      case "rejected":
       case "却下":
         return "bg-red-50 text-red-500 border-red-100";
       default:
         return "bg-gray-50 text-gray-500 border-gray-100";
+    }
+  };
+
+  const formatStatus = (status: string) => {
+    switch (status) {
+      case "pending":
+        return "審査中";
+      case "approved":
+        return "承認済";
+      case "rejected":
+        return "却下";
+      default:
+        return status;
     }
   };
 
@@ -94,47 +100,60 @@ const PartnersAdminPage: React.FC = () => {
 
           <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden">
             <div className="divide-y divide-gray-50">
-              {partners.map((partner) => (
-                <div
-                  key={partner.id}
-                  onClick={() => setSelectedPartner(partner.id)}
-                  className={`p-6 flex items-center justify-between hover:bg-salon-light/30 transition-all cursor-pointer ${
-                    selectedPartner === partner.id ? "bg-salon-light/50" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                        selectedPartner === partner.id
-                          ? "bg-salon-pink text-white"
-                          : "bg-gray-50 text-gray-400"
-                      }`}
-                    >
-                      <Briefcase size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-gray-800">
-                        {partner.company}
-                      </p>
-                      <p className="text-[10px] text-gray-400">
-                        {partner.contact} | {partner.date}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <span
-                      className={`text-[10px] font-bold px-3 py-1 rounded-full border ${getStatusColor(
-                        partner.status
-                      )}`}
-                    >
-                      {partner.status}
-                    </span>
-                    <button className="text-gray-300 hover:text-gray-600">
-                      <MoreVertical size={18} />
-                    </button>
-                  </div>
+              {isLoading ? (
+                <div className="p-10 text-center text-gray-400">
+                  読み込み中...
                 </div>
-              ))}
+              ) : partners.length === 0 ? (
+                <div className="p-10 text-center text-gray-400">
+                  応募はありません
+                </div>
+              ) : (
+                partners.map((partner) => (
+                  <div
+                    key={partner.id}
+                    onClick={() => setSelectedPartner(partner.id)}
+                    className={`p-6 flex items-center justify-between hover:bg-salon-light/30 transition-all cursor-pointer ${
+                      selectedPartner === partner.id ? "bg-salon-light/50" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+                          selectedPartner === partner.id
+                            ? "bg-salon-pink text-white"
+                            : "bg-gray-50 text-gray-400"
+                        }`}
+                      >
+                        <Briefcase size={24} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">
+                          {partner.company_name}
+                        </p>
+                        <p className="text-[10px] text-gray-400">
+                          {partner.contact_name} |{" "}
+                          {partner.created_at
+                            ? new Date(partner.created_at).toLocaleDateString()
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <span
+                        className={`text-[10px] font-bold px-3 py-1 rounded-full border ${getStatusColor(
+                          partner.status
+                        )}`}
+                      >
+                        {formatStatus(partner.status)}
+                      </span>
+                      <button className="text-gray-300 hover:text-gray-600">
+                        <MoreVertical size={18} />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -150,7 +169,7 @@ const PartnersAdminPage: React.FC = () => {
                     currentPartner.status
                   )}`}
                 >
-                  {currentPartner.status}
+                  {formatStatus(currentPartner.status)}
                 </span>
               </div>
 
@@ -160,7 +179,7 @@ const PartnersAdminPage: React.FC = () => {
                     Company
                   </p>
                   <p className="text-base font-bold text-gray-800">
-                    {currentPartner.company}
+                    {currentPartner.company_name}
                   </p>
                 </div>
 
@@ -169,12 +188,12 @@ const PartnersAdminPage: React.FC = () => {
                     Website
                   </p>
                   <a
-                    href={currentPartner.url}
+                    href={currentPartner.website_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-salon-pink flex items-center gap-1 hover:underline"
                   >
-                    {currentPartner.url} <ExternalLink size={14} />
+                    {currentPartner.website_url} <ExternalLink size={14} />
                   </a>
                 </div>
 
@@ -188,7 +207,7 @@ const PartnersAdminPage: React.FC = () => {
                     <div>
                       <p className="text-[10px] text-gray-400">担当者名</p>
                       <p className="text-sm font-bold text-gray-700">
-                        {currentPartner.contact}
+                        {currentPartner.contact_name}
                       </p>
                     </div>
                   </div>
@@ -223,7 +242,7 @@ const PartnersAdminPage: React.FC = () => {
                     Remarks
                   </p>
                   <p className="text-xs text-gray-600 leading-relaxed">
-                    貴社のシステムと弊社のマーケティング力を掛け合わせることで、より多くのサロン経営者様に付加価値を提供できると考えております。是非一度お打ち合わせの機会をいただければ幸いです。
+                    {currentPartner.remarks || "備考なし"}
                   </p>
                 </div>
               </div>

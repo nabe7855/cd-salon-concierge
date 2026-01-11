@@ -1,5 +1,6 @@
 "use client";
 
+import { createClient } from "@/utils/supabase/client";
 import { Eye, EyeOff, Lock, LogIn, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,11 +11,28 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // デモ版のため、そのまま管理画面へ遷移
-    router.push("/admin");
+    setError("");
+    setIsLoading(true);
+
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setError("メールアドレスまたはパスワードが正しくありません。");
+      setIsLoading(false);
+    } else {
+      router.push("/admin");
+      router.refresh();
+    }
   };
 
   return (
@@ -48,6 +66,13 @@ const LoginPage: React.FC = () => {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-2xl text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Email Field */}
             <div className="space-y-2">
               <label className="text-xs font-bold text-gray-600 ml-1">
@@ -121,13 +146,20 @@ const LoginPage: React.FC = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-gray-800 text-white py-4 rounded-2xl font-bold shadow-xl hover:bg-salon-pink transition-all flex items-center justify-center gap-2 group transform active:scale-[0.98]"
+              disabled={isLoading}
+              className={`w-full bg-gray-800 text-white py-4 rounded-2xl font-bold shadow-xl transition-all flex items-center justify-center gap-2 group transform active:scale-[0.98] ${
+                isLoading
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-salon-pink"
+              }`}
             >
-              ログイン{" "}
-              <LogIn
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
+              {isLoading ? "ログイン中..." : "ログイン"}{" "}
+              {!isLoading && (
+                <LogIn
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              )}
             </button>
           </form>
 
