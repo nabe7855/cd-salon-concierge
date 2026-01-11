@@ -247,7 +247,7 @@ const RecruitmentPage: React.FC = () => {
                           "【正社員・契約社員】週休2日制\n【アルバイト・業務委託】週3日以上勤務\n※1週間ごとの社内シフトに準ずる",
                       },
                       { label: "勤務期間", content: "最低勤務期間：半年以上" },
-                      { label: "会社名", content: "株式会社Luvina" },
+                      { label: "会社名", content: "合同会社オスカン" },
                       { label: "所在地", content: "東京都新宿区新宿2-15-29" },
                       {
                         label: "アクセス",

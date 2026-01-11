@@ -144,7 +144,7 @@ const CompanyPage: React.FC = () => {
           <div className="max-w-xl mx-auto text-sm md:text-base text-gray-600">
             <div className="space-y-4 text-left">
               {[
-                { label: "会社名", content: "株式会社Luvina" },
+                { label: "会社名", content: "合同会社オスカン" },
                 { label: "所在地", content: "東京都新宿区新宿 2-15-29" },
                 {
                   label: "事業内容",
@@ -182,7 +182,7 @@ const CompanyPage: React.FC = () => {
           <div className="space-y-8 text-gray-600 mb-12">
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                株式会社Luvina
+                合同会社オスカン
               </h3>
               <p className="text-sm">〒160-0022</p>
               <p className="text-sm">東京都新宿区新宿2-15-29</p>
