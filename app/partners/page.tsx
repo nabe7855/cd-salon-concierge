@@ -88,37 +88,131 @@ const PartnersPage: React.FC = () => {
               </div>
 
               <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input
-                    type="text"
-                    placeholder="貴社名"
-                    className="w-full bg-white border border-salon-tan/50 rounded-xl px-5 py-3 text-sm focus:ring-2 focus:ring-salon-blue/10"
-                  />
-                  <input
-                    type="text"
-                    placeholder="ご担当者名"
-                    className="w-full bg-white border border-salon-tan/50 rounded-xl px-5 py-3 text-sm focus:ring-2 focus:ring-salon-blue/10"
-                  />
-                  <input
-                    type="email"
-                    placeholder="メールアドレス"
-                    className="w-full bg-white border border-salon-tan/50 rounded-xl px-5 py-3 text-sm focus:ring-2 focus:ring-salon-blue/10"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="電話番号"
-                    className="w-full bg-white border border-salon-tan/50 rounded-xl px-5 py-3 text-sm focus:ring-2 focus:ring-salon-blue/10"
-                  />
+                {/* Field: Company Name */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      会社名
+                    </label>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="text"
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                    />
+                  </div>
                 </div>
-                <textarea
-                  rows={5}
-                  placeholder="提携内容等、具体的にご記入ください"
-                  className="w-full bg-white border border-salon-tan/50 rounded-xl px-5 py-4 text-sm resize-none focus:ring-2 focus:ring-salon-blue/10"
-                ></textarea>
 
-                <div className="text-center pt-4">
-                  <button className="bg-salon-blue text-white px-20 py-4 rounded-full font-bold shadow-xl hover:bg-salon-pink transition-all flex items-center gap-2 mx-auto">
-                    お問い合わせを送信 <Send size={18} />
+                {/* Field: Website URL */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      ホームページURL
+                    </label>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="url"
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                      placeholder="https://"
+                    />
+                  </div>
+                </div>
+
+                {/* Field: Contact Name */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      ご担当者名
+                    </label>
+                    <span className="bg-salon-blue text-white text-[10px] px-2 py-0.5 rounded">
+                      必須
+                    </span>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="text"
+                      required
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                    />
+                  </div>
+                </div>
+
+                {/* Field: Email */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      ご連絡用メールアドレス
+                    </label>
+                    <span className="bg-salon-blue text-white text-[10px] px-2 py-0.5 rounded">
+                      必須
+                    </span>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="email"
+                      required
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                    />
+                  </div>
+                </div>
+
+                {/* Field: Phone */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      ご連絡用お電話番号
+                    </label>
+                    <span className="bg-salon-blue text-white text-[10px] px-2 py-0.5 rounded">
+                      必須
+                    </span>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="tel"
+                      required
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                    />
+                  </div>
+                </div>
+
+                {/* Field: Address */}
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      ご住所
+                    </label>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="text"
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue"
+                    />
+                  </div>
+                </div>
+
+                {/* Field: Remarks */}
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-full md:w-1/3 flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">
+                      備考
+                    </label>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <textarea
+                      rows={5}
+                      className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-blue resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div className="text-center pt-8">
+                  <button className="bg-salon-blue text-white px-20 py-4 rounded-full font-bold shadow-xl hover:bg-salon-pink transition-all flex items-center gap-2 mx-auto group">
+                    お問い合わせを送信{" "}
+                    <Send
+                      size={18}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    />
                   </button>
                 </div>
               </form>

@@ -49,9 +49,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-sm font-medium hover:text-sage-600 transition-colors ${
+                className={`salon-nav-link ${
                   pathname === link.path
-                    ? "text-sage-600 border-b-2 border-sage-500"
+                    ? "salon-nav-link-active"
                     : "text-gray-600"
                 }`}
               >

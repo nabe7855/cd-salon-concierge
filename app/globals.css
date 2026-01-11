@@ -1,15 +1,33 @@
 @import "tailwindcss";
 
+@theme {
+  --color-salon-pink: #f69494;
+  --color-salon-tan: #e8d5c4;
+  --color-salon-gold: #c5a059;
+  --color-salon-blue: #5a8f8f;
+  --color-salon-light: #f9f6f2;
+  --color-sage-100: #e2e8e4;
+  --color-sage-400: #98b4a6;
+  --color-sage-500: #7c9a8c;
+  --color-sage-600: #6a8477;
+  --color-sage-800: #2d3e35;
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +40,39 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Base Semantic Classes */
+.salon-card {
+  @apply bg-white rounded-3xl border border-salon-tan shadow-sm hover:shadow-md transition-shadow;
+}
+
+.salon-heading-primary {
+  @apply text-3xl md:text-5xl font-bold text-gray-800 leading-tight mb-8;
+}
+
+.salon-btn-pink {
+  @apply bg-salon-pink text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-salon-blue transition-all;
+}
+
+.salon-container {
+  @apply container mx-auto px-4 max-w-5xl;
+}
+
+.salon-nav-link {
+  @apply text-sm font-medium transition-colors hover:text-sage-600;
+}
+
+.salon-nav-link-active {
+  @apply text-sage-600 border-b-2 border-salon-gold;
+}
+
+.salon-section {
+  @apply py-16 md:py-24;
+}
+
+.salon-badge {
+  @apply inline-block bg-salon-pink text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest;
 }

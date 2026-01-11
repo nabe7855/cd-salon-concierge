@@ -44,7 +44,7 @@ const TopPage: React.FC = () => {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight mb-8">
+            <h1 className="salon-heading-primary">
               貴店の予約受付はサロンコンシェルジュに
               <br />
               全てお任せください
