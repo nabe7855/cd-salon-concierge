@@ -29,17 +29,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* Header */}
       <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-sage-100 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-sage-500 p-1.5 md:p-2 rounded-full group-hover:bg-sage-600 transition-colors">
-              <Leaf className="w-5 h-5 md:w-6 md:h-6 text-white" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-botanical-primary rounded-lg flex items-center justify-center text-white shadow-md group-hover:bg-botanical-primary-light transition-colors">
+              <span className="font-heading font-bold text-xl tracking-tighter">
+                S
+              </span>
             </div>
             <div>
-              <span className="text-xl md:text-2xl font-bold tracking-tighter text-sage-800">
+              <h1 className="text-xl md:text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide text-sage-800">
                 SalonConcierge
-              </span>
-              <p className="text-[8px] md:text-[10px] text-sage-500 font-bold -mt-1 uppercase tracking-widest">
+              </h1>
+              <span className="text-[10px] text-gray-500 tracking-wider font-medium opacity-80 uppercase block mt-0.5">
                 Phone Reception Services
-              </p>
+              </span>
             </div>
           </Link>
 
