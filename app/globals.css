@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  /* Variant B Palette: Japanese Modern Trust */
-  --color-salon-navy: #2c3e50;
-  --color-salon-navy-light: #34495e;
-  --color-salon-coral: #ee6c4d;
-  --color-salon-gold: #c5a085; /* Refined Gold */
-  --color-salon-gold-light: #e0c097;
-  --color-salon-bg: #fdfbf7; /* Warm White */
-  --color-salon-gray: #f5f7fa;
+  /* Variant B Refined: Botanical Healing */
+  --color-salon-navy: #5c7a6e; /* Deep Sage */
+  --color-salon-navy-light: #7c9a8c; /* Sage */
+  --color-salon-coral: #d4a373; /* Terracotta/Wood */
+  --color-salon-gold: #b5a48b; /* Earthy Beige */
+  --color-salon-gold-light: #e6d5b8; /* Sand */
+  --color-salon-bg: #fefcf5; /* Ivory / Washi paper tone */
+  --color-salon-gray: #f2f4ef; /* Pale Mint Gray */
 
   /* Legacy preservation mapping */
-  --color-salon-pink: #ee6c4d; /* Mapped to Coral */
-  --color-salon-tan: #e0c097; /* Mapped to Gold Light */
-  --color-salon-blue: #2c3e50; /* Mapped to Navy */
-  --color-salon-light: #fdfbf7;
+  --color-salon-pink: #d4a373;
+  --color-salon-tan: #e6d5b8;
+  --color-salon-blue: #5c7a6e;
+  --color-salon-light: #fefcf5;
 
   --animate-float: float 6s ease-in-out infinite;
+}
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #2c3e50;
+  --background: #fefcf5;
+  --foreground: #4a5d55;
 }
 
 body {
@@ -40,25 +40,25 @@ body {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
     "Hiragino Sans", Meiryo, sans-serif;
   overflow-x: hidden;
-  line-height: 1.8;
-  letter-spacing: 0.05em;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
 }
 
-/* Base Semantic Classes */
+/* Base Semantic Classes - Softer rounded corners */
 .salon-card {
-  @apply bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300;
+  @apply bg-white rounded-2xl border border-salon-gold-light shadow-sm hover:shadow-md transition-all duration-500;
 }
 
 .salon-heading-primary {
-  @apply text-3xl md:text-5xl font-bold text-salon-navy leading-tight mb-8 tracking-wide;
+  @apply text-3xl md:text-5xl font-bold text-salon-navy leading-tight mb-8 tracking-wide font-feature-settings-palt;
 }
 
 .salon-btn-primary {
-  @apply bg-salon-navy text-white px-8 py-4 rounded-md font-bold hover:bg-salon-navy-light transition-all shadow-md tracking-wider;
+  @apply bg-salon-navy text-white px-8 py-4 rounded-full font-bold hover:bg-salon-navy-light transition-all shadow-md tracking-wider hover:-translate-y-0.5;
 }
 
 .salon-btn-accent {
-  @apply bg-salon-coral text-white px-8 py-4 rounded-md font-bold hover:opacity-90 transition-all shadow-md tracking-wider;
+  @apply bg-salon-coral text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all shadow-md tracking-wider hover:-translate-y-0.5;
 }
 
 .salon-container {
@@ -66,9 +66,9 @@ body {
 }
 
 .salon-section {
-  @apply py-20 md:py-32;
+  @apply py-24 md:py-36 relative;
 }
 
 .salon-badge {
-  @apply inline-block bg-salon-navy text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4;
+  @apply inline-block bg-salon-navy-light text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4;
 }
