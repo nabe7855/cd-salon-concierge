@@ -1,5 +1,6 @@
 "use client";
 
+import Layout from "@/components/Layout";
 import {
   ArrowRight,
   BarChart3,
@@ -88,69 +89,8 @@ const FLOW_STEPS = [
 
 const TopPage: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen font-sans text-botanical-text bg-botanical-bg">
-      {/* Sticky Header with prominent CTA */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
-        <div className="container-custom py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-botanical-primary rounded-lg flex items-center justify-center text-white shadow-md group-hover:bg-botanical-primary-light transition-colors">
-              <span className="font-heading font-bold text-xl tracking-tighter">
-                S
-              </span>
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide">
-                SalonConcierge
-              </h1>
-              <span className="text-[10px] text-gray-500 tracking-wider font-medium opacity-80 uppercase">
-                Phone Reception Services
-              </span>
-            </div>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <nav className="flex items-center gap-6">
-              <Link
-                href="#features"
-                className="hover:text-botanical-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-botanical-primary after:transition-all hover:after:w-full"
-              >
-                サービス特徴
-              </Link>
-              <Link
-                href="#pricing"
-                className="hover:text-botanical-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-botanical-primary after:transition-all hover:after:w-full"
-              >
-                料金プラン
-              </Link>
-              <Link
-                href="#flow"
-                className="hover:text-botanical-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-botanical-primary after:transition-all hover:after:w-full"
-              >
-                導入の流れ
-              </Link>
-            </nav>
-            <div className="h-6 w-px bg-gray-200"></div>
-            <Link
-              href="/contact"
-              className="btn-cta text-sm py-2.5 px-6 shadow-botanical hover:shadow-lg transition-all transform hover:-translate-y-0.5"
-            >
-              お問い合わせ・見積り
-            </Link>
-          </div>
-
-          {/* Mobile Menu (Simplified) */}
-          <div className="lg:hidden">
-            <Link
-              href="/contact"
-              className="bg-botanical-primary text-white text-xs font-bold px-3 py-2 rounded-md"
-            >
-              お問い合わせ
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-grow">
+    <Layout>
+      <div className="font-sans text-botanical-text bg-botanical-bg">
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-16 pb-24 md:pt-32 md:pb-40">
           {/* Background Decor */}
@@ -582,120 +522,9 @@ const TopPage: React.FC = () => {
             </p>
           </div>
         </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12 text-sm">
-        <div className="container-custom grid md:grid-cols-4 gap-8 mb-8 border-b border-gray-800 pb-8">
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4 text-white">
-              <div className="w-8 h-8 bg-botanical-primary rounded flex items-center justify-center">
-                <span className="font-heading font-bold text-lg">S</span>
-              </div>
-              <span className="font-bold text-lg font-heading">
-                SalonConcierge
-              </span>
-            </div>
-            <p className="text-xs leading-relaxed opacity-70">
-              メンズエステ専門の電話代行・予約管理サービス。
-              <br />
-              オーナー様の「時間」と「売上」を創出します。
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-4">Service</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="#features"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  サービスの特徴
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#pricing"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  料金プラン
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#flow"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  導入の流れ
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  お問い合わせ
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/company"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  運営会社
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  プライバシーポリシー
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  利用規約
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sct"
-                  className="hover:text-botanical-cta transition-colors"
-                >
-                  特定商取引法に基づく表記
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-4">Contact</h4>
-            <p className="mb-2">お電話でのお問い合わせ</p>
-            <p className="text-xl text-white font-bold font-heading mb-4">
-              03-1234-5678
-            </p>
-            <p className="text-xs opacity-60">
-              平日 10:00 - 18:00 (土日祝除く)
-              <br />※ Webフォームは24時間受付中
-            </p>
-          </div>
-        </div>
-        <div className="container-custom text-center text-xs opacity-50">
-          © {new Date().getFullYear()} SalonConcierge. All Rights Reserved.
-        </div>
-      </footer>
-    </div>
+      </div>
+    </Layout>
   );
 };
+
 export default TopPage;
