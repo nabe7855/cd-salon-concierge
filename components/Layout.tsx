@@ -22,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col font-sans overflow-x-hidden">
       {/* Top Banner */}
-      <div className="bg-sage-600 text-white text-[10px] md:text-xs py-1 text-center">
+      <div className="bg-botanical-primary text-white text-[10px] md:text-xs py-1 text-center">
         メンズエステ専門電話代行 | 業界最高水準の応答率と契約継続率
       </div>
 
@@ -36,7 +36,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </span>
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide text-sage-800">
+              <h1 className="text-xl md:text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide">
                 SalonConcierge
               </h1>
               <span className="text-[10px] text-gray-500 tracking-wider font-medium opacity-80 uppercase block mt-0.5">
@@ -132,10 +132,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Phone Button */}
           <a
             href="tel:050-5443-1770"
-            className="flex-1 bg-sage-500 text-white rounded-xl shadow-lg flex flex-col items-center justify-center hover:opacity-90 transition-opacity"
+            className="flex-1 bg-botanical-primary-light text-white rounded-xl shadow-lg flex flex-col items-center justify-center hover:opacity-90 transition-opacity"
           >
             <Phone className="w-6 h-6 mb-1" />
-            <span className="text-[10px] font-bold text-sage-50">
+            <span className="text-[10px] font-bold text-white">
               9:30-翌4:00
             </span>
           </a>
@@ -143,7 +143,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* LINE Button */}
           <a
             href="#"
-            className="flex-1 bg-white border-2 border-sage-500 text-sage-600 rounded-xl shadow-lg flex flex-col items-center justify-center hover:bg-sage-50 transition-colors"
+            className="flex-1 bg-white border-2 border-botanical-primary-light text-botanical-primary rounded-xl shadow-lg flex flex-col items-center justify-center hover:bg-gray-50 transition-colors"
           >
             <div className="bg-[#06C755] text-white rounded-full p-0.5 mb-1 px-1.5 text-[8px] font-black leading-none flex items-center justify-center h-6 w-10">
               LINE
@@ -154,12 +154,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Inquiry Button */}
           <Link
             href="/contact"
-            className="flex-1 bg-sage-600 text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center px-1 hover:opacity-90 transition-opacity"
+            className="flex-1 bg-botanical-primary text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center px-1 hover:opacity-90 transition-opacity"
           >
             <span className="text-[9px] md:text-[10px] font-bold leading-tight">
               お問い合わせフォーム
             </span>
-            <span className="text-[10px] font-bold mt-1 text-sage-100">
+            <span className="text-[10px] font-bold mt-1 text-white/90">
               24時間受付
             </span>
           </Link>
