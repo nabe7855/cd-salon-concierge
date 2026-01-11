@@ -1,78 +1,87 @@
 @import "tailwindcss";
 
 @theme {
-  --color-salon-pink: #f69494;
-  --color-salon-tan: #e8d5c4;
-  --color-salon-gold: #c5a059;
-  --color-salon-blue: #5a8f8f;
-  --color-salon-light: #f9f6f2;
-  --color-sage-100: #e2e8e4;
-  --color-sage-400: #98b4a6;
-  --color-sage-500: #7c9a8c;
-  --color-sage-600: #6a8477;
-  --color-sage-800: #2d3e35;
+  /* High-End Botanical Palette */
+  --color-botanical-primary: #3a5f56; /* Deep Green / Muted Teal - Trust */
+  --color-botanical-primary-light: #7c9a8c; /* Sage Green - Healing */
+  --color-botanical-bg: #f9fbf9; /* Very Pale Sage/White - Cleanliness */
+  --color-botanical-accent: #c5a085; /* Champagne Gold - Luxury */
+  --color-botanical-text: #333333; /* Dark Charcoal - Readability */
+  --color-botanical-text-light: #666666;
+  --color-botanical-cta: #d4a373; /* Muted Coral/Terracotta - Action */
+  --color-botanical-white: #ffffff;
 
-  --animate-float: float 3s ease-in-out infinite;
+  /* Legacy preservation mapping (optional but safe) */
+  --color-salon-pink: #d4a373;
+  --color-salon-tan: #c5a085;
+  --color-salon-gold: #c5a085;
+  --color-salon-blue: #3a5f56;
+  --color-salon-light: #f9fbf9;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
+  /* Mobile-first spacing utilities */
+  --spacing-section-mobile: 4rem;
+  --spacing-section-desktop: 6rem;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f9fbf9;
+  --foreground: #333333;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
 }
 
-/* Base Semantic Classes */
-.salon-card {
-  @apply bg-white rounded-3xl border border-salon-tan shadow-sm hover:shadow-md transition-shadow;
+/* Typography Utilities */
+.font-heading {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
 }
 
-.salon-heading-primary {
-  @apply text-3xl md:text-5xl font-bold text-gray-800 leading-tight mb-8;
+.text-botanical-primary {
+  color: var(--color-botanical-primary);
+}
+.bg-botanical-primary {
+  background-color: var(--color-botanical-primary);
 }
 
-.salon-btn-pink {
-  @apply bg-salon-pink text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-salon-blue transition-all;
+/* Component Classes */
+.btn-cta {
+  @apply bg-botanical-cta text-white font-bold py-3 px-8 rounded-full shadow-md hover:opacity-90 transition-all transform hover:-translate-y-0.5 text-center inline-flex items-center justify-center gap-2;
 }
 
-.salon-container {
-  @apply container mx-auto px-4 max-w-5xl;
+.btn-outline {
+  @apply border-2 border-botanical-primary text-botanical-primary font-bold py-3 px-8 rounded-full hover:bg-botanical-primary hover:text-white transition-all text-center inline-block;
 }
 
-.salon-nav-link {
-  @apply text-sm font-medium transition-colors hover:text-sage-600;
-}
-
-.salon-nav-link-active {
-  @apply text-sage-600 border-b-2 border-salon-gold;
-}
-
-.salon-section {
+.section-padding {
   @apply py-16 md:py-24;
 }
 
-.salon-badge {
-  @apply inline-block bg-salon-pink text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest;
+.container-custom {
+  @apply container mx-auto px-4 md:px-6 max-w-6xl;
+}
+
+.card-base {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }
