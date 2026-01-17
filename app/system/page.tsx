@@ -434,12 +434,6 @@ const SystemPage: React.FC = () => {
                     CRMシステムと完全同期するため、Webからの予約も電話窓口と同じ顧客データで一元管理。
                     現場のダブルブッキングを防ぎ、24時間365日、予約の自動受付を可能にします。
                   </p>
-                  <div className="inline-flex items-center gap-2 text-salon-gold font-bold bg-salon-gold/5 px-4 py-2 rounded-full border border-salon-gold/20">
-                    <span className="text-xs uppercase tracking-tighter">
-                      Integration Score
-                    </span>
-                    <span className="text-sm">100% Seamless</span>
-                  </div>
                 </div>
               </div>
 
