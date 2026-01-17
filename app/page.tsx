@@ -3,16 +3,12 @@
 import Layout from "@/components/Layout";
 import {
   ArrowRight,
-  BarChart3,
   CheckCircle2,
   Clock,
-  Laptop,
   Leaf,
   MessageSquare,
   Phone,
   ShieldCheck,
-  Smartphone,
-  Sparkles,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -33,34 +29,46 @@ const PROBLEMS = [
 
 const FEATURES = [
   {
-    title: "メンズエステ業界特化",
-    desc: "業界経験豊富な専任オペレーターが対応。SMS案内やCRM入力など、特有の業務もスムーズにこなします。",
-    icon: Sparkles,
+    title: "メンズエステサロン特有の対応に特化",
+    subtitle: "専門性",
+    desc: "SMS案内、LINE予約、セラピストとの連携など、メンズエステならではの複雑なオペレーションを完全網羅。貴店のこだわりを最大限に反映した、オーダーメイドな対応を実現します。",
+    detail: "業界特有のニーズを熟知した専門的な対応力",
+    image: "/images/features/feature-specialized.png",
   },
   {
-    title: "予約チャネル全網羅",
-    desc: "電話・LINE・WEB全ての予約を代行。オーナー様は施術と接客に集中でき、成約率が向上します。",
-    icon: Smartphone,
+    title: "オペレーター全員の対応品質を徹底",
+    subtitle: "高品質",
+    desc: "現場経験者による厳しい研修をパスした正規スタッフのみが担当。単なる「電話受け」ではなく、一本一本の電話を確実に来店へとつなげる、ホスピタリティ溢れる応対をお約束します。",
+    detail: "成約率を最大化する「受付プロフェッショナル集団」",
+    image: "/images/features/feature-quality.png",
   },
   {
-    title: "24時間365日対応",
-    desc: "朝9時から翌朝5時まで、年中無休で受付。深夜のゴールデンタイムも逃しません。",
-    icon: Clock,
+    title: "スタート前の準備を徹底",
+    subtitle: "サポート",
+    desc: "導入前に詳細なヒアリングを行い、独自の対応マニュアルを作成。顧客情報の移行やコース設定、セラピスト管理まで、専門スタッフがすべて代行するため、手間なく即戦力の体制を構築できます。",
+    detail: "スムーズな導入を支える、貴店専用の運営マニュアル",
+    image: "/images/features/feature-preparation.png",
   },
   {
-    title: "完全成果報酬型",
-    desc: "初期費用0円、予約確定1件1,000円〜。固定費のリスクなく、安心して導入いただけます。",
-    icon: BarChart3,
+    title: "様々なシステムを無料でご提供",
+    subtitle: "DX支援",
+    desc: "CTI、WEB予約、顧客管理、IP電話まで、運営に必要なITツールをすべて無料で提供。スマホ一台で全データを一元管理できるため、日々のタスクを大幅に削減し、経営に集中できる環境を整えます。",
+    detail: "DX化で運営効率を劇的に高める、無料提供システム",
+    image: "/images/features/feature-system.png",
   },
   {
-    title: "強力なシステム提供",
-    desc: "CTI・WEB予約・顧客管理システムを無料で提供。データの一元管理で経営を効率化します。",
-    icon: Laptop,
+    title: "ホームページ制作",
+    subtitle: "Web制作",
+    desc: "顧客管理システムとリアルタイムで連動する、高機能なHPを低コストで制作。シフトや出勤情報の一括更新が可能になり、更新の手間を省きながら、新規客の獲得を強力にサポートします。",
+    detail: "予約システム直結！集客と管理を両立するサイト制作",
+    image: "/images/features/feature-web.png",
   },
   {
-    title: "トータルサポート",
-    desc: "電話代行だけでなく、集客コンサルやHP制作など、サロン経営をワンストップで支援します。",
-    icon: Users,
+    title: "経営コンサルティング",
+    subtitle: "成長支援",
+    desc: "集客・求人の悩みから日々の運営改善まで、長年のノウハウを惜しみなく提供。広告のスペシャリストや技術講師とのネットワークも活用し、貴店の売上最大化に向けたパートナーとして歩みます。",
+    detail: "持続的な成長を伴走支援する、トータルコンサルティング",
+    image: "/images/features/feature-consulting.png",
   },
 ];
 
@@ -134,13 +142,7 @@ const TopPage: React.FC = () => {
                   今すぐ無料相談する
                   <ArrowRight size={20} />
                 </Link>
-                <Link
-                  href="/contact"
-                  className="bg-white border-2 border-botanical-primary/30 text-botanical-primary font-bold py-4 px-10 rounded-full hover:bg-botanical-primary/5 transition-all text-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                >
-                  資料を請求する
-                  <ArrowRight size={20} className="opacity-50" />
-                </Link>
+                {/* 資料請求ボタン削除 */}
               </div>
 
               <div className="flex flex-wrap items-center gap-6 text-[11px] md:text-xs text-gray-700 font-bold bg-white/30 backdrop-blur-sm p-3 rounded-2xl w-fit">
@@ -202,13 +204,13 @@ const TopPage: React.FC = () => {
         </section>
 
         {/* Features Section */}
+        {/* Features Section */}
         <section
           id="features"
-          className="section-padding bg-botanical-bg relative"
+          className="section-padding bg-botanical-bg/30 relative"
         >
-          {/* Decorative Pattern using CSS Grid or SVG could go here */}
           <div className="container-custom">
-            <div className="text-center mb-20">
+            <div className="text-center mb-24">
               <span className="text-botanical-cta font-bold tracking-widest text-xs uppercase mb-3 block">
                 OUR STRENGTHS
               </span>
@@ -217,23 +219,70 @@ const TopPage: React.FC = () => {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-24">
               {FEATURES.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-8 border border-gray-50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+                  className={`flex flex-col md:flex-row items-center gap-12 lg:gap-24 ${
+                    idx % 2 === 1 ? "md:flex-row-reverse" : ""
+                  }`}
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-botanical-bg rounded-xl text-botanical-primary group-hover:bg-botanical-primary group-hover:text-white transition-colors duration-300">
-                      <feature.icon size={28} strokeWidth={1.5} />
+                  {/* Image Side */}
+                  <div className="w-full md:w-1/2 relative group">
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                     </div>
-                    <h3 className="font-bold text-xl text-gray-800 pt-1">
-                      {feature.title}
-                    </h3>
+                    {/* Decorative element */}
+                    <div
+                      className={`absolute -bottom-6 -right-6 w-24 h-24 bg-botanical-primary/10 rounded-full -z-10 group-hover:scale-150 transition-transform duration-700 ${
+                        idx % 2 === 1 ? "right-auto -left-6" : ""
+                      }`}
+                    ></div>
                   </div>
-                  <p className="text-gray-600 text-[15px] leading-7 pl-[3.75rem]">
-                    {feature.desc}
-                  </p>
+
+                  {/* Text Side */}
+                  <div className="w-full md:w-1/2 relative">
+                    {/* Big Number */}
+                    <div className="absolute -top-16 -left-4 text-9xl font-bold text-botanical-primary/5 font-heading select-none pointer-events-none">
+                      0{idx + 1}
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className="text-botanical-cta font-bold text-sm tracking-wider mb-2 block">
+                        {feature.subtitle} 0{idx + 1}
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 font-heading leading-tight">
+                        {feature.title}
+                      </h3>
+                      <h4 className="text-lg font-bold text-botanical-primary mb-6 border-b-2 border-botanical-primary/20 pb-2 inline-block">
+                        {feature.detail}
+                      </h4>
+
+                      {/* Description List - splitting by periods for bullet points if multiple sentences */}
+                      <div className="space-y-3">
+                        {feature.desc.split("。").map(
+                          (sentence, sIdx) =>
+                            sentence && (
+                              <div
+                                key={sIdx}
+                                className="flex items-start gap-3"
+                              >
+                                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-botanical-cta flex-shrink-0"></div>
+                                <p className="text-gray-600 leading-relaxed text-base">
+                                  {sentence}
+                                  {feature.desc.includes("。") ? "。" : ""}
+                                </p>
+                              </div>
+                            )
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
