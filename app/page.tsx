@@ -5,11 +5,16 @@ import {
   ArrowRight,
   CheckCircle2,
   Clock,
+  Database,
+  Globe,
   Leaf,
+  MessageCircle,
   MessageSquare,
   Phone,
   ShieldCheck,
-  Users,
+  Smartphone,
+  Star,
+  User,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -92,6 +97,92 @@ const FLOW_STEPS = [
     step: "04",
     title: "運用開始",
     desc: "オペレーター研修完了後、サービスを開始します。",
+  },
+];
+
+const PREPARATION_ITEMS = [
+  {
+    title: "ご予約受付用スマートフォン",
+    desc: "転送設定済みの端末を1台ご用意ください。端末本体を弊社へお預けいただく必要はありません。また、弊社から無料のIP電話番号を発行し、そちらを店舗番号としてご利用いただくことも可能です。",
+    icon: Smartphone,
+  },
+  {
+    title: "予約受付用公式LINE",
+    desc: "LINEでの予約対応をご希望の場合は、公式アカウントの作成をお願いしております。アカウント開設の手続きが不安な場合は、弊社スタッフによる代理作成サポートも承っております。",
+    icon: MessageCircle,
+  },
+  {
+    title: "営業用ホームページ",
+    desc: "集客の要となるサイトをお持ちでない場合、弊社で顧客管理システムとリアルタイムに連動する高機能なホームページを制作可能です。管理コストを抑えつつ、予約の自動取り込みを実現します。",
+    icon: Globe,
+  },
+  {
+    title: "既存の顧客データ",
+    desc: "既に営業中の店舗様は、現在お使いの顧客情報の移行が可能です。電話帳、CSV、エクセル等、様々な形式に対応いたします。お預かりしたデータは機密保持契約に基づき、厳重に管理いたします。",
+    icon: Database,
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    location: "東京都 港区",
+    name: "A店 オーナー様",
+    rating: 5,
+    text: "以前は施術中の電話に出られず多くの予約を逃していましたが、導入後は応答率がほぼ100%になり売上が前年比130%にアップしました。",
+  },
+  {
+    location: "大阪府 北区",
+    name: "B店 店長様",
+    rating: 5,
+    text: "24時間対応のおかげで、深夜帯の取りこぼしが完全になくなりました。LINE予約の返信も早く、お客様からの信頼感が劇的に上がっています。",
+  },
+  {
+    location: "福岡県 中央区",
+    name: "C店 代表様",
+    rating: 4,
+    text: "セラピストが電話対応に追われることがなくなり、施術に100%集中できる環境が整いました。スタッフのストレスも減り、離職防止にも繋がっています。",
+  },
+  {
+    location: "神奈川県 横浜市",
+    name: "D店 運営責任者様",
+    rating: 5,
+    text: "オペレーターの方々の対応が非常に丁寧で、リピート率が向上しました。マニュアルも細かく設定できるので、自店のブランドイメージを崩さず任せられます。",
+  },
+  {
+    location: "愛知県 名古屋市",
+    name: "E店 オーナー様",
+    rating: 5,
+    text: "独自の予約システムを無料で使えるのが助かります。CTI機能で誰から電話がきたかすぐ分かるので、常連様への特別対応もスムーズです。",
+  },
+  {
+    location: "北海道 札幌市",
+    name: "F店 店長様",
+    rating: 5,
+    text: "急な欠勤や繁忙期でも動じずに対応してくれるため安心感が違います。自分一人で抱え込んでいた予約管理から解放され、経営に集中できています。",
+  },
+  {
+    location: "京都府 中京区",
+    name: "G店 代表様",
+    rating: 4,
+    text: "新規オープンに合わせて導入しました。集客が軌道に乗るまでの不安な時期に、全ての問い合わせを漏らさず拾ってくれたことが成功の要因でした。",
+  },
+  {
+    location: "兵庫県 神戸市",
+    name: "H店 経営者様",
+    rating: 5,
+    text: "多店舗展開していますが、各店舗の状況を一元管理できるシステムが秀逸です。報告もタイムリーで、離れた場所からでも運営状況が正確に把握できます。",
+  },
+  {
+    location: "宮城県 仙台市",
+    name: "I店 オーナー様",
+    rating: 5,
+    text: "IP電話番号を無料で貸し出してくれたので、固定電話を引く手間が省けました。スマホ一台あればどこでも状況を確認できるので機動力が増しました。",
+  },
+  {
+    location: "千葉県 船橋市",
+    name: "J店 管理職様",
+    rating: 5,
+    text: "コストパフォーマンスが非常に高いです。成果報酬型なのでリスクがなく、それ以上の利益（来店数）をしっかり確保してくれています。",
   },
 ];
 
@@ -438,57 +529,114 @@ const TopPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="section-padding bg-white">
-          <div className="container-custom">
+        {/* Preparation Section */}
+        <section className="section-padding bg-white relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-botanical-primary/5 rounded-full blur-[100px] -mr-20 -mt-20"></div>
+          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-botanical-cta/5 rounded-full blur-[80px] -ml-10 -mb-10"></div>
+
+          <div className="container-custom relative z-10">
             <div className="text-center mb-16">
+              <span className="text-botanical-primary font-bold tracking-widest text-xs uppercase mb-3 block opacity-70">
+                PREPARATION
+              </span>
+              <h2 className="text-3xl font-bold text-gray-800 font-heading">
+                代行業務スタートに向けた準備
+              </h2>
+              <p className="text-gray-500 mt-4 text-sm md:text-base max-w-2xl mx-auto">
+                サービス開始にあたって以下のものをご用意いただきます。
+                <br className="hidden md:block" />
+                不足しているものがある場合も、弊社で柔軟にサポートいたしますのでご安心ください。
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+              {PREPARATION_ITEMS.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-botanical-bg/40 p-8 rounded-3xl border border-white/50 shadow-sm hover:shadow-md transition-all duration-300 group"
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-botanical-cta group-hover:scale-110 transition-transform duration-500 flex-shrink-0">
+                      <item.icon size={28} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800 mb-3 font-heading">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="section-padding bg-white overflow-hidden">
+          <div className="container-custom mb-16">
+            <div className="text-center">
               <span className="text-botanical-primary font-bold tracking-widest text-xs uppercase mb-3 block opacity-70">
                 VOICE
               </span>
               <h2 className="text-3xl font-bold text-gray-800 font-heading">
                 導入サロン様の声
               </h2>
+              <div className="mx-auto mt-4 w-12 h-1 bg-botanical-cta rounded-full"></div>
             </div>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {[1, 2].map((_, i) => (
+          <div className="relative">
+            {/* Gradient guards for the marquee */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+            <div className="flex animate-marquee hover:pause gap-6">
+              {[...TESTIMONIALS, ...TESTIMONIALS].map((voice, i) => (
                 <div
                   key={i}
-                  className="bg-botanical-bg p-8 rounded-2xl relative"
+                  className="w-[300px] md:w-[400px] flex-shrink-0 bg-botanical-bg/50 p-6 md:p-8 rounded-3xl border border-gray-100 flex flex-col justify-between"
                 >
-                  <div className="absolute top-8 right-8 text-botanical-primary/10">
-                    <MessageSquare size={48} fill="currentColor" />
-                  </div>
-                  <div className="flex gap-4 items-center mb-6">
-                    <div
-                      className="w-12 h-12 bg-gray-200 rounded-full flex-shrink-0 bg-cover bg-center border-2 border-white shadow-sm"
-                      style={{
-                        backgroundImage: `url('https://i.pravatar.cc/150?u=salon${
-                          i + 5
-                        }')`,
-                      }}
-                    ></div>
-                    <div>
-                      <p className="font-bold text-gray-800 text-sm">
-                        {i === 0 ? "東京都 港区 A店様" : "大阪府 北区 B店様"}
-                      </p>
-                      <div className="flex text-yellow-500 text-[10px] mt-1 space-x-0.5">
+                  <div>
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="flex gap-4 items-center">
+                        <div className="w-12 h-12 bg-botanical-primary/10 rounded-full flex items-center justify-center text-botanical-primary flex-shrink-0">
+                          <User size={24} />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-800 text-sm">
+                            {voice.name}
+                          </p>
+                          <p className="text-[10px] text-gray-500">
+                            {voice.location}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex text-botanical-cta">
                         {[...Array(5)].map((_, j) => (
-                          <Users
+                          <Star
                             key={j}
-                            size={12}
-                            fill="currentColor"
-                            className={j < 4 ? "" : "text-gray-300"}
+                            size={14}
+                            fill={j < voice.rating ? "currentColor" : "none"}
+                            className={j < voice.rating ? "" : "text-gray-300"}
                           />
                         ))}
                       </div>
                     </div>
+                    <p className="text-gray-600 italic text-sm leading-relaxed relative z-10">
+                      「{voice.text}」
+                    </p>
                   </div>
-                  <p className="text-gray-600 italic text-sm leading-7 mb-4 relative z-10">
-                    {i === 0
-                      ? "「以前は施術中の電話に出られず、多くの予約を逃していました。導入後は応答率がほぼ100%になり、売上が前年比130%にアップ。スタッフも施術に集中でき、サービス品質が向上しました。」"
-                      : "「24時間対応のおかげで、深夜帯の取りこぼしがなくなりました。LINE予約の返信も早く、お客様からの信頼感が上がったと感じています。システムも使いやすく、管理が楽になりました。」"}
-                  </p>
+                  <div className="mt-6 flex justify-end">
+                    <MessageSquare
+                      size={32}
+                      className="text-botanical-primary/5"
+                      fill="currentColor"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

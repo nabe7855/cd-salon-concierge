@@ -98,3 +98,27 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1.5rem)); /* Adjust based on gap */
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+.animate-marquee-slow {
+  animation-duration: 80s;
+}
+
+.hover\:pause:hover {
+  animation-play-state: paused;
+}
