@@ -35,11 +35,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 S
               </span>
             </div>
-            <div>
-              <h1 className="text-xl md:text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide">
+            <div className="flex flex-col">
+              <h1 className="text-lg md:text-2xl font-bold text-botanical-primary leading-none font-heading tracking-wide">
                 SalonConcierge
               </h1>
-              <span className="text-[10px] text-gray-500 tracking-wider font-medium opacity-80 uppercase block mt-0.5">
+              <span className="text-[9px] md:text-[10px] text-gray-400 tracking-wider font-medium opacity-80 uppercase block mt-1">
                 Phone Reception Services
               </span>
             </div>
@@ -128,14 +128,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       {/* Mobile Floating Navigation */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 px-2 pb-4 pt-2 bg-gradient-to-t from-white via-white/80 to-transparent">
-        <div className="flex items-stretch gap-2 h-16 md:h-20 max-w-lg mx-auto">
+        <div className="flex items-stretch gap-1.5 h-14 md:h-18 max-w-md mx-auto">
           {/* Phone Button */}
           <a
             href="tel:050-5443-1770"
             className="flex-1 bg-botanical-primary-light text-white rounded-xl shadow-lg flex flex-col items-center justify-center hover:opacity-90 transition-opacity"
           >
-            <Phone className="w-6 h-6 mb-1" />
-            <span className="text-[10px] font-bold text-white">
+            <Phone className="w-5 h-5 mb-0.5" />
+            <span className="text-[9px] font-bold text-white leading-none">
               9:30-翌4:00
             </span>
           </a>
@@ -145,22 +145,24 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             href="#"
             className="flex-1 bg-white border-2 border-botanical-primary-light text-botanical-primary rounded-xl shadow-lg flex flex-col items-center justify-center hover:bg-gray-50 transition-colors"
           >
-            <div className="bg-[#06C755] text-white rounded-full p-0.5 mb-1 px-1.5 text-[8px] font-black leading-none flex items-center justify-center h-6 w-10">
+            <div className="bg-[#06C755] text-white rounded-full p-0.5 mb-1 px-1.5 text-[8px] font-black leading-none flex items-center justify-center h-5 w-10">
               LINE
             </div>
-            <span className="text-[10px] font-bold">24時間受付</span>
+            <span className="text-[9px] font-bold leading-none">
+              24時間受付
+            </span>
           </a>
 
           {/* Inquiry Button */}
           <Link
             href="/contact"
-            className="flex-1 bg-botanical-primary text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center px-1 hover:opacity-90 transition-opacity"
+            className="flex-[1.2] bg-botanical-primary text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center px-1 hover:opacity-90 transition-opacity"
           >
-            <span className="text-[9px] md:text-[10px] font-bold leading-tight">
+            <span className="text-[9px] font-bold leading-tight">
               お問い合わせフォーム
             </span>
-            <span className="text-[10px] font-bold mt-1 text-white/90">
-              24時間受付
+            <span className="text-[8px] font-medium mt-0.5 text-white/80 leading-none">
+              24h受付
             </span>
           </Link>
         </div>

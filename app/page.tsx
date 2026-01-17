@@ -109,7 +109,7 @@ const TopPage: React.FC = () => {
               className="w-full h-full object-cover object-center lg:object-[center_right]"
             />
             {/* Gradient Overlay for Legibility (Lighter on the left to show background but keep text readable) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-white/95 via-white/60 to-transparent"></div>
           </div>
 
           <div className="container-custom relative z-10 w-full">
@@ -119,7 +119,7 @@ const TopPage: React.FC = () => {
                 業界No.1の応答率・継続率
               </span>
 
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading text-botanical-primary leading-[1.1] mb-6">
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold font-heading text-botanical-primary leading-[1.2] md:leading-[1.1] mb-6">
                 メンズエステ専門
                 <br />
                 <span className="text-botanical-cta">電話代行サービス</span>
@@ -180,13 +180,13 @@ const TopPage: React.FC = () => {
               {PROBLEMS.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-botanical-bg p-10 rounded-2xl border border-transparent text-center hover:border-botanical-primary/20 hover:shadow-lg transition-all duration-300 group relative overflow-hidden"
+                  className="bg-botanical-bg p-6 md:p-10 rounded-2xl border border-transparent text-center hover:border-botanical-primary/20 hover:shadow-lg transition-all duration-300 group relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-botanical-primary/5 rounded-bl-[4rem] transition-all group-hover:bg-botanical-primary/10"></div>
                   <div className="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center text-botanical-cta shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
                     <item.icon size={36} strokeWidth={1.5} />
                   </div>
-                  <p className="font-bold text-gray-700 leading-loose text-lg">
+                  <p className="font-bold text-gray-700 leading-loose text-base md:text-lg">
                     {item.text}
                   </p>
                 </div>
@@ -256,10 +256,10 @@ const TopPage: React.FC = () => {
                       <span className="text-botanical-cta font-bold text-sm tracking-wider mb-2 block">
                         {feature.subtitle} 0{idx + 1}
                       </span>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 font-heading leading-tight">
+                      <h3 className="text-xl md:text-3xl font-bold text-gray-800 mb-6 font-heading leading-tight">
                         {feature.title}
                       </h3>
-                      <h4 className="text-lg font-bold text-botanical-primary mb-6 border-b-2 border-botanical-primary/20 pb-2 inline-block">
+                      <h4 className="text-base md:text-lg font-bold text-botanical-primary mb-6 border-b-2 border-botanical-primary/20 pb-2 inline-block">
                         {feature.detail}
                       </h4>
 
@@ -304,8 +304,8 @@ const TopPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row transform transition-transform hover:scale-[1.01]">
-              <div className="p-12 md:w-2/3 border-b md:border-b-0 md:border-r border-gray-100 relative">
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
+              <div className="p-8 md:p-12 md:w-2/3 border-b md:border-b-0 md:border-r border-gray-100 relative">
                 <div className="absolute top-0 left-0 w-full h-2 bg-botanical-primary"></div>
                 <h3 className="text-2xl font-bold text-botanical-primary mb-8 flex items-center gap-3 font-heading">
                   スタンダードプラン
@@ -357,12 +357,13 @@ const TopPage: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <div className="p-12 md:w-1/3 bg-botanical-primary text-white flex flex-col justify-center items-center text-center relative overflow-hidden">
+              <div className="p-10 md:p-12 md:w-1/3 bg-botanical-primary text-white flex flex-col justify-center items-center text-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-white/5 opacity-50 pattern-grid-lg"></div>
                 <div className="relative z-10">
-
-                  <p className="text-5xl font-bold mb-1 font-heading">¥1,000</p>
-                  <p className="text-sm opacity-80 mb-8">〜 / 1件 (税込)</p>
+                  <p className="text-4xl md:text-5xl font-bold mb-1 font-heading">
+                    ¥1,000
+                  </p>
+                  <p className="text-xs opacity-80 mb-8">〜 / 1件 (税込)</p>
 
                   <Link
                     href="/contact"
@@ -370,7 +371,7 @@ const TopPage: React.FC = () => {
                   >
                     無料見積り
                   </Link>
-                  <p className="text-[10px] mt-4 opacity-60">
+                  <p className="text-[9px] mt-4 opacity-60">
                     ※契約期間・解約金の縛りなし
                   </p>
                 </div>
@@ -407,10 +408,10 @@ const TopPage: React.FC = () => {
               {/* Connecting Line for Desktop */}
               <div className="hidden md:block absolute top-[18px] left-0 w-full h-0.5 bg-gray-200 -z-10 transform translate-y-8"></div>
 
-              <div className="grid md:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {FLOW_STEPS.map((flow, idx) => (
                   <div key={idx} className="relative group">
-                    <div className="w-16 h-16 bg-white border-4 border-botanical-bg rounded-full flex items-center justify-center font-bold text-xl text-botanical-primary mb-6 mx-auto shadow-sm group-hover:scale-110 group-hover:border-botanical-cta transition-all duration-300 relative z-10">
+                    <div className="w-14 h-14 md:w-16 md:h-16 bg-white border-4 border-botanical-bg rounded-full flex items-center justify-center font-bold text-lg md:text-xl text-botanical-primary mb-6 mx-auto shadow-sm group-hover:scale-110 group-hover:border-botanical-cta transition-all duration-300 relative z-10">
                       {flow.step}
                     </div>
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center h-[calc(100%-80px)] hover:shadow-md transition-shadow">

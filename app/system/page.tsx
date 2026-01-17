@@ -65,19 +65,19 @@ const SystemPage: React.FC = () => {
       title: "顧客情報の管理",
       desc: "来店履歴や好みの詳細までをデジタルカルテ化。過去のデータを武器に、一人ひとりに寄り添った個別の「おもてなし」を実現します。",
       icon: <Users size={20} />,
-      img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000",
+      img: "/customer_management_luxury_1768682781900.png",
     },
     {
       title: "セラピストの登録",
       desc: "スタッフのスキルや稼働状況をきめ細かく設定可能。現場の負担を最小限に抑えつつ、最適な人員配置と効率的な運営をサポートします。",
       icon: <Zap size={20} />,
-      img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1000",
+      img: "/therapist_registry_luxury_1768682795692.png",
     },
     {
       title: "売上レポート",
       desc: "経営数値は全て自動集計。分析ダッシュボードが店舗の「今」を可視化。データに基づいた確信ある意思決定を加速させ、売上の最大化に貢献します。",
       icon: <BarChart3 size={20} />,
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+      img: "/sales_report_luxury_1768682812756.png",
     },
   ];
 
@@ -85,7 +85,7 @@ const SystemPage: React.FC = () => {
     <Layout>
       <div className="bg-gray-50 min-h-screen font-sans selection:bg-salon-gold selection:text-white">
         {/* --- Hero Section: Outcome Focused --- */}
-        <section className="relative bg-botanical-primary text-white py-32 overflow-hidden">
+        <section className="relative bg-botanical-primary text-white py-20 md:py-32 overflow-hidden">
           {/* Abstract Background Elements */}
           <div className="absolute top-0 right-0 w-2/3 h-full opacity-10 pointer-events-none">
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-salon-gold rounded-full blur-[120px]"></div>
@@ -94,7 +94,7 @@ const SystemPage: React.FC = () => {
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-8">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-8">
                 <span className="text-salon-gold">取りこぼしゼロ</span>と
                 <br />
                 <span className="text-salon-gold">顧客満足度</span>を両立する、
@@ -119,8 +119,8 @@ const SystemPage: React.FC = () => {
               <div className="md:w-1/2 relative">
                 <div className="absolute -top-10 -left-10 w-32 h-32 bg-salon-light rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-salon-gold/20 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
-                <div className="relative z-10 bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
-                  <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden relative">
+                <div className="relative z-10 bg-white p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100">
+                  <div className="aspect-video bg-gray-100 rounded-xl md:rounded-2xl overflow-hidden relative">
                     <img
                       src="/4.jpg"
                       alt="Dashboard"
@@ -159,7 +159,7 @@ const SystemPage: React.FC = () => {
 
         <section className="py-24 bg-white overflow-hidden">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="flex flex-col-reverse md:flex-row items-center gap-16">
               {/* Text Area */}
               <div className="md:w-1/2">
                 <span className="text-salon-gold font-bold tracking-widest text-sm block mb-2">
@@ -224,21 +224,21 @@ const SystemPage: React.FC = () => {
               </div>
 
               {/* Image / Mockup Area */}
-              <div className="md:w-1/2">
+              <div className="w-full md:w-1/2">
                 <div className="relative group">
                   {/* Decorative Blob */}
                   <div className="absolute -top-20 -left-20 w-64 h-64 bg-botanical-primary/5 rounded-full blur-[80px]"></div>
 
                   {/* Mockup Frame */}
-                  <div className="relative bg-gray-900 p-4 rounded-3xl shadow-2xl overflow-hidden aspect-[16/10] border-4 border-gray-800">
-                    <div className="absolute top-0 inset-x-0 h-6 bg-gray-800/50 backdrop-blur-sm z-10 flex items-center px-4 gap-1.5">
+                  <div className="relative bg-gray-900 p-2 md:p-4 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden aspect-[16/10] border-4 border-gray-800 w-full flex flex-col">
+                    <div className="flex items-center px-4 gap-1.5 h-6 bg-gray-800/50 backdrop-blur-sm shrink-0">
                       <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
                       <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
                       <div className="w-2 h-2 rounded-full bg-green-500/50"></div>
                     </div>
 
                     {/* Active Image Content */}
-                    <div className="relative w-full h-full pt-6">
+                    <div className="relative flex-1 overflow-hidden">
                       {ctiFeatures.map((feature, idx) => (
                         <div
                           key={idx}
@@ -251,7 +251,7 @@ const SystemPage: React.FC = () => {
                           <img
                             src={feature.img}
                             alt={feature.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top"
                           />
                           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 flex items-end p-8">
                             <div className="text-white">
@@ -281,20 +281,20 @@ const SystemPage: React.FC = () => {
           <div className="container mx-auto px-6 max-w-6xl relative z-10">
             <div className="flex flex-col md:flex-row-reverse items-center gap-16">
               {/* Image / Mockup Area */}
-              <div className="md:w-1/2">
+              <div className="w-full md:w-1/2">
                 <div className="relative group">
                   {/* Decorative Blob */}
                   <div className="absolute -top-20 -right-20 w-64 h-64 bg-salon-gold/30 rounded-full blur-[80px]"></div>
 
                   {/* Glassmorphism Card */}
-                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-3xl shadow-2xl overflow-hidden aspect-[16/10]">
-                    <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-4 relative z-10">
+                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-4 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden aspect-[16/10] w-full flex flex-col">
+                    <div className="flex items-center gap-2 px-2 pb-4 border-b border-white/10 shrink-0">
                       <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
                     </div>
                     {/* Active Image with Fade-in Effect */}
-                    <div className="relative w-full h-full">
+                    <div className="relative flex-1 overflow-hidden mt-2">
                       {crmFeatures.map((feature, idx) => (
                         <div
                           key={idx}
@@ -307,7 +307,7 @@ const SystemPage: React.FC = () => {
                           <img
                             src={feature.img}
                             alt={feature.title}
-                            className="w-full h-full object-cover rounded-xl shadow-inner"
+                            className="w-full h-full object-cover object-top rounded-xl shadow-inner"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-botanical-primary/40 to-transparent flex items-end p-6">
                             <span className="text-white text-xs font-bold tracking-widest bg-salon-gold/80 px-3 py-1 rounded backdrop-blur-sm">

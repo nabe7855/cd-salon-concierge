@@ -69,9 +69,9 @@ const ContactPage: React.FC = () => {
     <Layout>
       <div className="bg-salon-light/30 min-h-screen pb-20 font-sans">
         {/* Title Header - Updated to Green Banner */}
-        <div className="relative w-full h-40 flex items-center justify-center bg-botanical-primary mb-12 overflow-hidden">
+        <div className="relative w-full h-32 md:h-40 flex items-center justify-center bg-botanical-primary mb-8 md:mb-12 overflow-hidden">
           <div className="absolute inset-0 bg-black/20 z-0"></div>
-          <h1 className="relative z-10 text-3xl md:text-4xl font-bold text-white font-heading tracking-widest">
+          <h1 className="relative z-10 text-xl md:text-4xl font-bold text-white font-heading tracking-widest px-4 text-center">
             お問い合わせ・無料お見積り
           </h1>
         </div>
@@ -129,7 +129,7 @@ const ContactPage: React.FC = () => {
 
             {/* Form Container */}
             <div className="container mx-auto px-4 max-w-4xl">
-              <div className="bg-white rounded-[40px] p-8 md:p-16 shadow-sm border border-salon-tan/30">
+              <div className="bg-white rounded-[32px] md:rounded-[40px] p-6 md:p-16 shadow-sm border border-salon-tan/30">
                 <form className="space-y-8" onSubmit={handleSubmit}>
                   {/* 1. Salon Name */}
                   <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -148,7 +148,7 @@ const ContactPage: React.FC = () => {
                         value={formData.salon_name}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-pink"
+                        className="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-salon-pink text-base"
                       />
                     </div>
                   </div>
@@ -476,7 +476,7 @@ const ContactPage: React.FC = () => {
                   <div className="flex justify-center pt-8">
                     <button
                       type="submit"
-                      className={`bg-salon-pink text-white px-16 py-4 rounded-full font-bold text-xl shadow-lg transition-all transform hover:scale-105 ${
+                      className={`bg-salon-pink text-white px-10 md:px-16 py-4 rounded-full font-bold text-lg md:text-xl shadow-lg transition-all transform hover:scale-105 ${
                         !agreed || isSubmitting
                           ? "opacity-50 cursor-not-allowed"
                           : "hover:bg-salon-blue"

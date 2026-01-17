@@ -50,11 +50,11 @@ const CompanyPage: React.FC = () => {
                   </span>
                 </div>
 
-                <h1 className="relative mb-10">
-                  <span className="block text-5xl md:text-7xl font-bold font-heading text-botanical-primary leading-tight mb-2">
+                <h1 className="relative mb-8 md:mb-10">
+                  <span className="block text-3xl md:text-7xl font-bold font-heading text-botanical-primary leading-tight mb-2">
                     どんな難題だって、
                   </span>
-                  <span className="block text-4xl md:text-6xl font-bold font-heading text-botanical-primary/60 leading-tight">
+                  <span className="block text-2xl md:text-6xl font-bold font-heading text-botanical-primary/60 leading-tight">
                     情熱と技術で
                     <br />
                     越えていく。
@@ -125,11 +125,11 @@ const CompanyPage: React.FC = () => {
                 企業理念
               </h2>
 
-              <div className="relative mb-16 px-12 py-16 bg-white/50 backdrop-blur-sm rounded-[40px] border border-white/50 shadow-sm max-w-3xl mx-auto">
+              <div className="relative mb-8 md:mb-16 px-6 md:px-12 py-12 md:py-16 bg-white/50 backdrop-blur-sm rounded-[32px] md:rounded-[40px] border border-white/50 shadow-sm max-w-3xl mx-auto">
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-botanical-primary text-white p-3 rounded-2xl shadow-lg">
                   <Sparkles size={24} />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight mb-8">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-800 leading-tight mb-8">
                   「声のホスピタリティで、
                   <br />
                   サロンに新しい価値を。」

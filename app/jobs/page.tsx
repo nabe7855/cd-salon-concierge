@@ -61,11 +61,11 @@ const RecruitmentPage: React.FC = () => {
     <Layout>
       <div className="bg-salon-light/30 min-h-screen font-sans text-gray-700">
         {/* --- Hero Section: Green Theme --- */}
-        <section className="relative overflow-hidden bg-botanical-primary pt-24 pb-20 md:pt-32 md:pb-24">
+        <section className="relative overflow-hidden bg-botanical-primary pt-20 pb-16 md:pt-32 md:pb-24">
           <div className="absolute inset-0 bg-black/10 z-0"></div>
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
           <div className="container mx-auto px-4 relative z-10 text-center text-white">
-            <h1 className="text-3xl md:text-5xl font-bold font-heading mb-6 tracking-wide">
+            <h1 className="text-2xl md:text-5xl font-bold font-heading mb-4 md:mb-6 tracking-wide">
               採用情報
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto leading-relaxed font-light">
@@ -122,35 +122,35 @@ const RecruitmentPage: React.FC = () => {
                         : "bg-white text-gray-500 border-gray-200 hover:bg-gray-50"
                     }`}
                   >
-                    <Clock size={18} />
-                    自分の時間を大切に
+                    <Clock size={16} />
+                    自分の時間
                   </button>
                   <button
                     onClick={() => setActiveTab("team")}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all shadow-sm border ${
+                    className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-bold transition-all shadow-sm border ${
                       activeTab === "team"
                         ? "bg-botanical-primary text-white border-botanical-primary scale-105"
                         : "bg-white text-gray-500 border-gray-200 hover:bg-gray-50"
                     }`}
                   >
-                    <Users size={18} />
-                    支え合える職場
+                    <Users size={16} />
+                    支え合える
                   </button>
                   <button
                     onClick={() => setActiveTab("beginner")}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all shadow-sm border ${
+                    className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-bold transition-all shadow-sm border ${
                       activeTab === "beginner"
                         ? "bg-gray-800 text-white border-gray-800 scale-105"
                         : "bg-white text-gray-500 border-gray-200 hover:bg-gray-50"
                     }`}
                   >
-                    <ShieldCheck size={18} />
+                    <ShieldCheck size={16} />
                     未経験歓迎
                   </button>
                 </div>
 
                 {/* Tab Content Area */}
-                <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 min-h-[400px] flex items-center">
+                <div className="bg-white rounded-[32px] p-6 md:p-12 shadow-sm border border-gray-100 min-h-[300px] md:min-h-[400px] flex items-center">
                   {activeTab === "time" && (
                     <div className="flex flex-col md:flex-row gap-8 items-center animate-fade-in">
                       <div className="md:w-1/2">
@@ -161,7 +161,7 @@ const RecruitmentPage: React.FC = () => {
                         />
                       </div>
                       <div className="md:w-1/2 space-y-4">
-                        <h3 className="text-2xl font-bold text-gray-800">
+                        <h3 className="text-xl md:text-2xl font-bold text-gray-800">
                           自分の時間を大切にできる
                           <br />
                           <span className="text-salon-gold">なので安心</span>
