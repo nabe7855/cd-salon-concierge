@@ -68,27 +68,12 @@ const ContactPage: React.FC = () => {
   return (
     <Layout>
       <div className="bg-salon-light/30 min-h-screen pb-20 font-sans">
-        {/* Breadcrumb - Top */}
-        <div className="container mx-auto px-4 pt-4 pb-2 text-[10px] text-gray-400">
-          <Link href="/" className="hover:text-salon-pink">
-            トップ
-          </Link>{" "}
-          &gt;{" "}
-          <span className="text-gray-500 font-bold">お問い合わせフォーム</span>
-        </div>
-
-        {/* Title Header */}
-        <div className="flex justify-center mb-6 pt-8">
-          <div className="relative">
-            <div className="bg-salon-pink text-white px-20 py-2 text-2xl font-bold flex items-center justify-center border-[3px] border-white outline outline-1 outline-salon-pink">
-              お問い合わせフォーム
-            </div>
-            {/* Decorative corners */}
-            <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-salon-pink bg-salon-light"></div>
-            <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-salon-pink bg-salon-light"></div>
-            <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-salon-pink bg-salon-light"></div>
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-salon-pink bg-salon-light"></div>
-          </div>
+        {/* Title Header - Updated to Green Banner */}
+        <div className="relative w-full h-40 flex items-center justify-center bg-botanical-primary mb-12 overflow-hidden">
+          <div className="absolute inset-0 bg-black/20 z-0"></div>
+          <h1 className="relative z-10 text-3xl md:text-4xl font-bold text-white font-heading tracking-widest">
+            お問い合わせ・無料お見積り
+          </h1>
         </div>
 
         {isSuccess ? (
@@ -130,9 +115,6 @@ const ContactPage: React.FC = () => {
         ) : (
           <>
             <div className="text-center mb-12 px-4">
-              <h1 className="text-xl font-bold text-gray-700 mb-6">
-                お問い合わせ・無料お見積り
-              </h1>
               <div className="text-sm text-gray-600 leading-relaxed space-y-2">
                 <p>当日中か翌営業日にはご返答させて頂いております。</p>
                 <p>
