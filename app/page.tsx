@@ -360,9 +360,7 @@ const TopPage: React.FC = () => {
               <div className="p-12 md:w-1/3 bg-botanical-primary text-white flex flex-col justify-center items-center text-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-white/5 opacity-50 pattern-grid-lg"></div>
                 <div className="relative z-10">
-                  <p className="text-sm font-bold opacity-90 mb-2 uppercase tracking-widest">
-                    Pricing Start From
-                  </p>
+
                   <p className="text-5xl font-bold mb-1 font-heading">¥1,000</p>
                   <p className="text-sm opacity-80 mb-8">〜 / 1件 (税込)</p>
 
