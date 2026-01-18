@@ -46,12 +46,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6 flex-nowrap">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
-                className={`salon-nav-link ${
+                className={`salon-nav-link whitespace-nowrap ${
                   pathname === link.path
                     ? "salon-nav-link-active"
                     : "text-gray-600"

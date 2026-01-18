@@ -247,14 +247,7 @@ const CompanyPage: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-[40px] shadow-2xl overflow-hidden p-8 md:p-16">
-              <div className="mb-16 text-center">
-                <h3 className="text-5xl font-bold text-botanical-primary tracking-tighter mb-2">
-                  Luvina
-                </h3>
-                <p className="text-xl tracking-[0.5em] text-salon-gold -mr-[0.5em]">
-                  TOKYO
-                </p>
-              </div>
+
 
               <div className="space-y-0">
                 {[
