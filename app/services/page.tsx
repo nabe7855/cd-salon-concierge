@@ -28,11 +28,11 @@ const ServicesPage: React.FC = () => {
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
           <div className="container mx-auto px-4 max-w-6xl relative z-10 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white font-heading mb-8 leading-tight tracking-wide">
-              <span className="block whitespace-nowrap">
+            <h1 className="text-3xl md:text-5xl font-bold text-white font-heading mb-8 leading-tight tracking-wide flex flex-col items-center">
+              <span className="whitespace-nowrap">
                 最高水準の品質のサービスを
               </span>
-              <span className="block whitespace-nowrap">
+              <span className="whitespace-nowrap">
                 <span className="text-salon-gold">業界最安値</span>
                 でお届けします。
               </span>
