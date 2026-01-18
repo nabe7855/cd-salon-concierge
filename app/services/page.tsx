@@ -29,10 +29,13 @@ const ServicesPage: React.FC = () => {
 
           <div className="container mx-auto px-4 max-w-6xl relative z-10 text-center">
             <h1 className="text-3xl md:text-5xl font-bold text-white font-heading mb-8 leading-tight tracking-wide">
-              最高水準の品質のサービスを
-              <br />
-              <span className="text-salon-gold">業界最安値</span>
-              でお届けします。
+              <span className="block whitespace-nowrap">
+                最高水準の品質のサービスを
+              </span>
+              <span className="block whitespace-nowrap">
+                <span className="text-salon-gold">業界最安値</span>
+                でお届けします。
+              </span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto mb-16 leading-relaxed text-sm md:text-base font-light">
               メンズエステ経営の課題を、運営サポートとITシステムの力で包括的に解決。
