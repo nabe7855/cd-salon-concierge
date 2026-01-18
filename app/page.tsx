@@ -194,13 +194,23 @@ const TopPage: React.FC = () => {
         <section className="relative min-h-[90vh] flex items-center pt-20 pb-20 overflow-hidden">
           {/* Background Image & Overlay */}
           <div className="absolute inset-0 z-0">
-            <img
-              src="/images/hero-bg-v2.png"
-              alt="Call Center"
-              className="w-full h-full object-cover object-center lg:object-[center_right]"
-            />
-            {/* Gradient Overlay for Legibility (Lighter on the left to show background but keep text readable) */}
-            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-white/95 via-white/60 to-transparent"></div>
+            <picture>
+              {/* Mobile optimized image */}
+              <source
+                media="(max-width: 767px)"
+                srcSet="/images/トップページバナー.png"
+              />
+              {/* Desktop optimized image */}
+              <img
+                src="/images/hero-bg-v2.png"
+                alt="Call Center"
+                className="w-full h-full object-cover object-center lg:object-[center_right] md:object-cover sm:object-contain"
+              />
+            </picture>
+            {/* Mobile-only background color fill to prevent white space if image ratio differs */}
+            <div className="absolute inset-0 bg-botanical-bg -z-10 md:hidden"></div>
+            {/* Gradient Overlay for Legibility */}
+            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-white/95 via-white/80 md:via-white/60 to-transparent"></div>
           </div>
 
           <div className="container-custom relative z-10 w-full">
