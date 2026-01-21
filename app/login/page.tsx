@@ -1,6 +1,5 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/client";
 import { Eye, EyeOff, Lock, LogIn, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,19 +18,21 @@ const LoginPage: React.FC = () => {
     setError("");
     setIsLoading(true);
 
-    const supabase = createClient();
+    // Hardcoded credentials check
+    console.log("Login attempt:", email);
+    if (email === "info-callcenter@osukan.com" && password === "123456") {
+      console.log("Credentials valid. Setting cookie.");
+      // Set a simple cookie for admin session
+      document.cookie =
+        "admin_logged_in=true; path=/; max-age=86400; SameSite=Lax";
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
+      console.log("Redirecting to /admin via location.href");
+      // Force hard navigation to ensure cookie is sent to server/middleware
+      window.location.href = "/admin";
+    } else {
+      console.log("Invalid credentials");
       setError("メールアドレスまたはパスワードが正しくありません。");
       setIsLoading(false);
-    } else {
-      router.push("/admin");
-      router.refresh();
     }
   };
 

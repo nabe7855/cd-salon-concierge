@@ -1,7 +1,18 @@
 import { updateSession } from "@/utils/supabase/middleware";
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  // Admin Route Protection (Temporary Hardcoded Check)
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    // Matches /admin and /admin/*
+    const adminCookie = request.cookies.get("admin_logged_in");
+
+    // If cookie is missing explicitly or not "true"
+    if (!adminCookie || adminCookie.value !== "true") {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  }
+
   return await updateSession(request);
 }
 
