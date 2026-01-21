@@ -191,7 +191,7 @@ const TopPage: React.FC = () => {
     <Layout>
       <div className="font-sans text-botanical-text bg-botanical-bg">
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center pt-20 pb-20 overflow-hidden">
+        <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center pt-20 pb-4 md:pb-20 overflow-hidden">
           {/* Background Image & Overlay */}
           <div className="absolute inset-0 z-0">
             <picture>
@@ -204,13 +204,14 @@ const TopPage: React.FC = () => {
               <img
                 src="/images/hero-bg-v2.png"
                 alt="Call Center"
-                className="w-full h-full object-cover object-center lg:object-[center_right] md:object-cover sm:object-contain"
+                className="w-full h-full object-contain object-top md:object-cover md:object-center lg:object-[center_right]"
               />
             </picture>
             {/* Mobile-only background color fill to prevent white space if image ratio differs */}
             <div className="absolute inset-0 bg-botanical-bg -z-10 md:hidden"></div>
             {/* Gradient Overlay for Legibility */}
-            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-white/95 via-white/80 md:via-white/60 to-transparent"></div>
+            {/* ↓ モバイル版（左側の薄いグレー）：from-gray-50/70 の「70」や via-gray-50/20 の「20」の数字を変えると濃さを調整できます（0〜100） */}
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-50/100 via-gray-50/70 to-transparent md:from-white/95 md:via-white/80 md:via-white/60 md:to-transparent"></div>
           </div>
 
           <div className="container-custom relative z-10 w-full">
@@ -220,13 +221,18 @@ const TopPage: React.FC = () => {
                 業界No.1の応答率・継続率
               </span>
 
-              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold font-heading text-botanical-primary leading-[1.2] md:leading-[1.1] mb-6">
+              {/* ↓ 文字の白縁（影）の調整について:
+                  drop-shadow-[0_0_10px_rgba(255,255,255,1)] の中の数値を変更してください。
+                  ・3番目の数字「10px」: 影の広がり（ぼかし）の強さ。数字を大きくすると影が広がり、小さくするとくっきりします。
+                  ・最後の数字「1」: 影の濃さ（不透明度）。1.0に近づくほど濃くなり、0に近づくほど薄くなります。 */}
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold font-heading text-botanical-primary leading-[1.2] md:leading-[1.1] mb-6 drop-shadow-[0_0_10px_rgba(255,255,255,1)]">
                 メンズエステ専門
                 <br />
                 <span className="text-botanical-cta">電話代行サービス</span>
               </h2>
 
-              <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed mb-10 max-w-xl">
+              {/* ↓ 文字の白縁（影）の調整について: 3番目の数字「8px」が広がり、最後の数字「1」が濃さです */}
+              <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed mb-10 max-w-xl drop-shadow-[0_0_8px_rgba(255,255,255,1)]">
                 お客様を逃さない
                 <span className="text-botanical-primary font-bold">
                   24時間365日対応
@@ -246,19 +252,54 @@ const TopPage: React.FC = () => {
                 {/* 資料請求ボタン削除 */}
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 text-[11px] md:text-xs text-gray-700 font-bold bg-white/30 backdrop-blur-sm p-3 rounded-2xl w-fit">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={16} className="text-botanical-cta" />
-                  初期費用0円
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={16} className="text-botanical-cta" />
-                  即日スタート可
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={16} className="text-botanical-cta" />
-                  全国対応
-                </span>
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-5 mt-2">
+                {/* Medal 1: 初期費用0円 */}
+                <div className="flex flex-col items-center justify-center w-[84px] h-[84px] md:w-28 md:h-28 rounded-full bg-gradient-to-br from-[#FFFDE7] via-[#FFF59D] to-[#FBC02D] border-[3px] md:border-[4px] border-[#fff] shadow-[0_6px_10px_rgba(0,0,0,0.15),0_0_0_1px_rgba(251,192,45,1)] relative transform hover:scale-105 transition-transform duration-300">
+                  <div className="absolute inset-2 rounded-full border border-[#F9A825]/30"></div>
+                  <div className="flex flex-col items-center justify-center z-10 text-[#5D4037] leading-none text-center">
+                    <span className="text-[9px] md:text-[11px] font-extrabold mb-0.5">
+                      Initial Cost
+                    </span>
+                    <span className="text-[10px] md:text-xs font-black block scale-90 md:scale-100">
+                      初期費用
+                    </span>
+                    <span className="text-base md:text-xl font-black text-[#E65100]">
+                      0円
+                    </span>
+                  </div>
+                </div>
+
+                {/* Medal 2: 即日スタート */}
+                <div className="flex flex-col items-center justify-center w-[84px] h-[84px] md:w-28 md:h-28 rounded-full bg-gradient-to-br from-[#FFFDE7] via-[#FFF59D] to-[#FBC02D] border-[3px] md:border-[4px] border-[#fff] shadow-[0_6px_10px_rgba(0,0,0,0.15),0_0_0_1px_rgba(251,192,45,1)] relative transform hover:scale-105 transition-transform duration-300">
+                  <div className="absolute inset-2 rounded-full border border-[#F9A825]/30"></div>
+                  <div className="flex flex-col items-center justify-center z-10 text-[#5D4037] leading-none text-center">
+                    <span className="text-[9px] md:text-[11px] font-extrabold mb-0.5">
+                      Speed
+                    </span>
+                    <span className="text-[10px] md:text-xs font-black block scale-90 md:scale-100">
+                      即日
+                    </span>
+                    <span className="text-xs md:text-sm font-black">
+                      スタート可
+                    </span>
+                  </div>
+                </div>
+
+                {/* Medal 3: 全国対応 */}
+                <div className="flex flex-col items-center justify-center w-[84px] h-[84px] md:w-28 md:h-28 rounded-full bg-gradient-to-br from-[#FFFDE7] via-[#FFF59D] to-[#FBC02D] border-[3px] md:border-[4px] border-[#fff] shadow-[0_6px_10px_rgba(0,0,0,0.15),0_0_0_1px_rgba(251,192,45,1)] relative transform hover:scale-105 transition-transform duration-300">
+                  <div className="absolute inset-2 rounded-full border border-[#F9A825]/30"></div>
+                  <div className="flex flex-col items-center justify-center z-10 text-[#5D4037] leading-none text-center">
+                    <span className="text-[9px] md:text-[11px] font-extrabold mb-0.5">
+                      Online
+                    </span>
+                    <span className="text-[13px] md:text-base font-black py-0.5">
+                      全国
+                    </span>
+                    <span className="text-[10px] md:text-xs font-black">
+                      対応
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

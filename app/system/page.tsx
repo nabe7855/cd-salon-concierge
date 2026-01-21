@@ -462,15 +462,23 @@ const SystemPage: React.FC = () => {
 
                   {/* Pricing Box */}
                   <div className="bg-botanical-primary/5 rounded-2xl p-6 border border-botanical-primary/10">
-                    <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-xs text-gray-400">初期費用</span>
-                      <span className="text-xl font-bold text-gray-800 font-heading">
-                        ¥20,000
-                      </span>
-                      <span className="text-xs text-gray-400 ml-2">月額</span>
-                      <span className="text-xl font-bold text-salon-gold font-heading">
-                        ¥10,000〜
-                      </span>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-baseline gap-y-1 gap-x-4 mb-3">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-gray-400 whitespace-nowrap">
+                          初期費用
+                        </span>
+                        <span className="text-xl font-bold text-gray-800 font-heading">
+                          ¥20,000
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-gray-400 whitespace-nowrap">
+                          月額
+                        </span>
+                        <span className="text-xl font-bold text-salon-gold font-heading">
+                          ¥10,000〜
+                        </span>
+                      </div>
                     </div>
                     <p className="text-[10px] text-gray-400">
                       ※ロゴ・バナー製作等のオプションも柔軟に対応可能です。
