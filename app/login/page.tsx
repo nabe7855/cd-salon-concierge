@@ -18,9 +18,10 @@ const LoginPage: React.FC = () => {
     setError("");
     setIsLoading(true);
 
-    // Hardcoded credentials check
+    // Hardcoded credentials check (Disabled for debug: allow ANY)
     console.log("Login attempt:", email);
-    if (email === "info-callcenter@osukan.com" && password === "123456") {
+    // Allow any credentials as requested
+    if (true) {
       console.log("Credentials valid. Setting cookie.");
       // Set a simple cookie for admin session
       document.cookie =
