@@ -45,7 +45,7 @@ const FEATURES = [
     subtitle: "高品質",
     desc: "現場経験者による厳しい研修をパスした正規スタッフのみが担当。単なる「電話受け」ではなく、一本一本の電話を確実に来店へとつなげる、ホスピタリティ溢れる応対をお約束します。",
     detail: "成約率を最大化する「受付プロフェッショナル集団」",
-    image: "/images/features/feature-quality.png",
+    image: "/images/features/operators_group.png",
   },
   {
     title: "スタート前の準備を徹底",
@@ -66,14 +66,14 @@ const FEATURES = [
     subtitle: "Web制作",
     desc: "顧客管理システムとリアルタイムで連動する、高機能なHPを低コストで制作。シフトや出勤情報の一括更新が可能になり、更新の手間を省きながら、新規客の獲得を強力にサポートします。",
     detail: "予約システム直結！集客と管理を両立するサイト制作",
-    image: "/images/features/feature-web.png",
+    image: "/images/features/feature-web-v2.png",
   },
   {
     title: "経営コンサルティング",
     subtitle: "成長支援",
     desc: "集客・求人の悩みから日々の運営改善まで、長年のノウハウを惜しみなく提供。広告のスペシャリストや技術講師とのネットワークも活用し、貴店の売上最大化に向けたパートナーとして歩みます。",
     detail: "持続的な成長を伴走支援する、トータルコンサルティング",
-    image: "/images/features/feature-consulting.png",
+    image: "/images/features/feature-consulting-v2.png",
   },
 ];
 
@@ -379,7 +379,7 @@ const TopPage: React.FC = () => {
                                   {feature.desc.includes("。") ? "。" : ""}
                                 </p>
                               </div>
-                            )
+                            ),
                         )}
                       </div>
                     </div>

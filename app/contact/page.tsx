@@ -466,8 +466,8 @@ const ContactPage: React.FC = () => {
                       <p className="font-bold">
                         【個人情報の取り扱いに関する相談窓口】
                       </p>
-                      <p>こころサポート株式会社</p>
-                      <p>担当：和田</p>
+                      <p>合同会社オスカン</p>
+                      <p>担当：一条 蓮</p>
                       <p>TEL：080-1017-5318</p>
                     </div>
                   </div>

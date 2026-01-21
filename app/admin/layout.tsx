@@ -149,7 +149,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div className="h-8 w-px bg-gray-100 mx-2 hidden sm:block"></div>
             <div className="flex items-center gap-3">
               <div className="hidden sm:block text-right">
-                <p className="text-xs font-bold text-gray-800">和田 太郎</p>
+                <p className="text-xs font-bold text-gray-800">一条 蓮</p>
                 <p className="text-[10px] text-gray-400">管理者</p>
               </div>
               <div

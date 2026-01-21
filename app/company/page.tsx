@@ -52,7 +52,7 @@ const CompanyPage: React.FC = () => {
 
                 <h1 className="relative mb-8 md:mb-10">
                   <span className="block text-3xl md:text-7xl font-bold font-heading text-botanical-primary leading-tight mb-2">
-                    どんな難題だって、
+                    どんな難題だって
                   </span>
                   <span className="block text-2xl md:text-6xl font-bold font-heading text-botanical-primary/60 leading-tight">
                     情熱と技術で
@@ -250,7 +250,10 @@ const CompanyPage: React.FC = () => {
               <div className="space-y-0">
                 {[
                   { label: "会社名", content: "合同会社オスカン" },
-                  { label: "所在地", content: "東京都新宿区新宿 2-15-29" },
+                  {
+                    label: "所在地",
+                    content: "東京都港区浜松町2-2-15 ダイヤビル2F",
+                  },
                   {
                     label: "事業内容",
                     content: "電話受付代行／コンサルティング",
@@ -258,15 +261,18 @@ const CompanyPage: React.FC = () => {
                   { label: "電話番号", content: "080-1017-5318" },
                   {
                     label: "ウェブサイトURL",
-                    content: "https://salonbell.jp/",
+                    content: "https://osukan.com/",
                   },
-                  { label: "メールアドレス", content: "support@salonbell.jp" },
+                  {
+                    label: "メールアドレス",
+                    content: "info-callcenter@osukan.com",
+                  },
                   { label: "設立年月", content: "2018年7月" },
-                  { label: "代表者名", content: "金子周平" },
+                  { label: "代表者名", content: "一条 蓮" },
                   { label: "従業員数", content: "20名" },
                   { label: "資本金", content: "500万円" },
-                  { label: "取引銀行", content: "三井住友銀行" },
-                  { label: "電気通信事業届出番号", content: "A-06-22352" },
+                  { label: "取引銀行", content: "GMOあおぞら銀行" },
+
                 ].map((row, idx) => (
                   <div
                     key={idx}
@@ -315,9 +321,9 @@ const CompanyPage: React.FC = () => {
                           所在地
                         </p>
                         <p className="text-gray-700 leading-relaxed">
-                          〒160-0022
+                          〒105-0013
                           <br />
-                          東京都新宿区新宿2-15-29
+                          東京都港区浜松町2-2-15 ダイヤビル2F
                         </p>
                       </div>
                     </div>
@@ -335,11 +341,11 @@ const CompanyPage: React.FC = () => {
                         <ul className="text-gray-700 space-y-2">
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-salon-gold"></span>
-                            丸ノ内線「新宿御苑前駅」1番出口より徒歩3分
+                            JR山手線・京浜東北線「浜松町駅」より徒歩3分
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-salon-gold"></span>
-                            丸ノ内線・副都心線「新宿三丁目駅」C8出口より徒歩4分
+                            都営大江戸線・浅草線「大門駅」より徒歩3分
                           </li>
                         </ul>
                       </div>
@@ -386,7 +392,7 @@ const CompanyPage: React.FC = () => {
                 <div className="bg-white p-2 md:p-4 rounded-[40px] shadow-2xl border border-gray-100 overflow-hidden relative">
                   <div className="aspect-[4/3] relative rounded-[32px] overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8540702117185!2d139.7061732766345!3d35.69041287258451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cdba8366917%3A0x6d8594246194b669!2z44CSMTYwLTAwMjIg6Y9 東京都新宿区新宿7-15-29!5e0!3m2!1sja!2sjp!4v1716300000000!5m2!1sja!2sjp"
+                      src="https://maps.google.com/maps?q=東京都港区浜松町２丁目２－１５ダイヤビル２Ｆ&t=&z=15&ie=UTF8&iwloc=&output=embed"
                       className="absolute inset-0 w-full h-full"
                       style={{ border: 0 }}
                       allowFullScreen={true}
@@ -402,7 +408,7 @@ const CompanyPage: React.FC = () => {
                   </div>
                   <div className="p-6 text-center">
                     <a
-                      href="https://maps.google.com/maps?q=東京都新宿区新宿2-15-29"
+                      href="https://maps.google.com/maps?q=東京都港区浜松町２丁目２－１５ダイヤビル２Ｆ"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-sm text-salon-gold font-bold hover:underline"

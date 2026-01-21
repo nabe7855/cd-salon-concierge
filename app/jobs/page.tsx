@@ -325,11 +325,11 @@ const RecruitmentPage: React.FC = () => {
                       />
                       <RequirementRow
                         label="所在地"
-                        content={`東京都新宿区新宿2-15-29`}
+                        content={`東京都港区浜松町2-2-15 ダイヤビル2F`}
                       />
                       <RequirementRow
                         label="アクセス"
-                        content={`丸の内線「新宿御苑前駅」より徒歩3分\n丸の内線・副都心線「新宿三丁目駅」より徒歩4分`}
+                        content={`JR山手線・京浜東北線「浜松町駅」より徒歩3分\n都営大江戸線・浅草線「大門駅」より徒歩3分`}
                       />
                       <RequirementRow
                         label="連絡先"
