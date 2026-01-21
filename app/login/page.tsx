@@ -25,7 +25,13 @@ const LoginPage: React.FC = () => {
       // Allow any credentials as requested
       if (true) {
         console.log("Calling Server Action loginAction...");
-        await loginAction();
+        const result = await loginAction();
+        console.log("Server Action result:", result);
+
+        if (result && (result as { success: boolean }).success) {
+          console.log("Login success. Redirecting to /admin...");
+          window.location.href = "/admin";
+        }
       } else {
         console.log("Invalid credentials");
         setError("メールアドレスまたはパスワードが正しくありません。");
