@@ -12,7 +12,7 @@ import React, { useState } from "react";
 
 const ServicesPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"support" | "system" | "option">(
-    "support"
+    "support",
   );
 
   return (
@@ -253,11 +253,11 @@ const ServicesPage: React.FC = () => {
 
             <div className="flex flex-col md:flex-row justify-center gap-6">
               <a
-                href="tel:050-5443-1770"
+                href="tel:080-1017-5318"
                 className="bg-white text-botanical-primary py-4 px-10 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
               >
                 <Phone size={20} />
-                050-5443-1770
+                080-1017-5318
               </a>
               <Link
                 href="/contact"

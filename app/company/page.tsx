@@ -247,8 +247,6 @@ const CompanyPage: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-[40px] shadow-2xl overflow-hidden p-8 md:p-16">
-
-
               <div className="space-y-0">
                 {[
                   { label: "会社名", content: "合同会社オスカン" },
@@ -257,7 +255,7 @@ const CompanyPage: React.FC = () => {
                     label: "事業内容",
                     content: "電話受付代行／コンサルティング",
                   },
-                  { label: "電話番号", content: "03-5315-4637" },
+                  { label: "電話番号", content: "080-1017-5318" },
                   {
                     label: "ウェブサイトURL",
                     content: "https://salonbell.jp/",

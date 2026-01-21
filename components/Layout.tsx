@@ -106,10 +106,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               ))}
               <div className="pt-4 pb-10 flex flex-col gap-3">
                 <a
-                  href="tel:050-5443-1770"
+                  href="tel:080-1017-5318"
                   className="flex items-center justify-center gap-2 bg-sage-500 text-white py-3 rounded-xl font-bold"
                 >
-                  <Phone className="w-5 h-5" /> 050-5443-1770
+                  <Phone className="w-5 h-5" /> 080-1017-5318
                 </a>
                 <a
                   href="#"
@@ -131,7 +131,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="flex items-stretch gap-1.5 h-14 md:h-18 max-w-md mx-auto">
           {/* Phone Button */}
           <a
-            href="tel:050-5443-1770"
+            href="tel:080-1017-5318"
             className="flex-1 bg-botanical-primary-light text-white rounded-xl shadow-lg flex flex-col items-center justify-center hover:opacity-90 transition-opacity"
           >
             <Phone className="w-5 h-5 mb-0.5" />
@@ -229,7 +229,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     </span>
                   </div>
                   <p className="text-xl text-white font-bold mb-1">
-                    050-5443-1770
+                    080-1017-5318
                   </p>
                   <p className="text-xs">受付時間: 9:30 - 翌6:00</p>
                 </div>

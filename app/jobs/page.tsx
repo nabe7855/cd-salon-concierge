@@ -8,7 +8,7 @@ import React, { useState } from "react";
 
 const RecruitmentPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"time" | "team" | "beginner">(
-    "time"
+    "time",
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -30,7 +30,7 @@ const RecruitmentPage: React.FC = () => {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -333,7 +333,7 @@ const RecruitmentPage: React.FC = () => {
                       />
                       <RequirementRow
                         label="連絡先"
-                        content={`050-5443-1770\n※お問い合わせの際には「採用ページを見て」とお伝えいただくとスムーズです`}
+                        content={`080-1017-5318\n※お問い合わせの際には「採用ページを見て」とお伝えいただくとスムーズです`}
                         isLast
                       />
                     </div>
@@ -512,7 +512,7 @@ const RecruitmentPage: React.FC = () => {
                               />
                               <span className="text-gray-600">{type}</span>
                             </label>
-                          )
+                          ),
                         )}
                       </div>
                     </FormField>

@@ -21,7 +21,7 @@ import React from "react";
 
 // Content Data
 const PROBLEMS = [
-  { icon: Phone, text: "電話が多すぎて、施術中に予約を取りこぼしている…" },
+  { icon: Phone, text: "電話が多すぎて、対応出来ず取りこぼしてる、、、" },
   {
     icon: MessageSquare,
     text: "LINEやWEB予約の返信が遅れ、機会損失になっている…",

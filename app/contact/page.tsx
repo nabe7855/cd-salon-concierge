@@ -28,7 +28,7 @@ const ContactPage: React.FC = () => {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -121,7 +121,7 @@ const ContactPage: React.FC = () => {
                   また、３日以上経過しても返答が無い場合は、メールが正しく送信されていない場合がございます。
                 </p>
                 <p>
-                  お手数ですが再度メールを頂くか、050-5443-1770
+                  お手数ですが再度メールを頂くか、080-1017-5318
                   までお問い合わせ下さい。
                 </p>
               </div>
@@ -468,7 +468,7 @@ const ContactPage: React.FC = () => {
                       </p>
                       <p>こころサポート株式会社</p>
                       <p>担当：和田</p>
-                      <p>TEL：050-5443-1770</p>
+                      <p>TEL：080-1017-5318</p>
                     </div>
                   </div>
 
