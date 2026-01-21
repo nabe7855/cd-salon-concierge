@@ -4,6 +4,7 @@ import { Eye, EyeOff, Lock, LogIn, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { loginAction } from "./actions";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
@@ -18,22 +19,21 @@ const LoginPage: React.FC = () => {
     setError("");
     setIsLoading(true);
 
-    // Hardcoded credentials check (Disabled for debug: allow ANY)
-    console.log("Login attempt:", email);
-    // Allow any credentials as requested
-    if (true) {
-      console.log("Credentials valid. Setting cookie.");
-      // Set a simple cookie for admin session
-      document.cookie =
-        "admin_logged_in=true; path=/; max-age=86400; SameSite=Lax";
-
-      console.log("Redirecting to /admin via location.href");
-      // Force hard navigation to ensure cookie is sent to server/middleware
-      window.location.href = "/admin";
-    } else {
-      console.log("Invalid credentials");
-      setError("メールアドレスまたはパスワードが正しくありません。");
-      setIsLoading(false);
+    try {
+      // Hardcoded credentials check (Disabled for debug: allow ANY)
+      console.log("Login attempt:", email);
+      // Allow any credentials as requested
+      if (true) {
+        console.log("Calling Server Action loginAction...");
+        await loginAction();
+      } else {
+        console.log("Invalid credentials");
+        setError("メールアドレスまたはパスワードが正しくありません。");
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      // Even if error, if it's redirect, it works.
     }
   };
 
