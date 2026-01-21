@@ -1,7 +1,7 @@
 "use client";
 
 import Layout from "@/components/Layout";
-import { BLOG_POSTS } from "@/constants";
+import { createClient } from "@/utils/supabase/client";
 import {
   ArrowRight,
   BookOpen,
@@ -12,9 +12,66 @@ import {
   Tag,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  image_url: string | null;
+  published_at: string | null;
+  created_at: string;
+}
 
 const ColumnListPage: React.FC = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const supabase = createClient();
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .not("published_at", "is", null)
+      .order("published_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching posts:", error);
+    } else {
+      setPosts(data || []);
+    }
+    setIsLoading(false);
+  };
+
+  const filteredPosts = posts.filter(
+    (p) =>
+      p.title.includes(searchTerm) ||
+      p.category.includes(searchTerm) ||
+      p.excerpt.includes(searchTerm),
+  );
+
+  const categories = Array.from(new Set(posts.map((p) => p.category)));
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\//g, ".");
+  };
+
   return (
     <Layout>
       <div className="bg-[#fcfcfc] min-h-screen pb-20 font-sans">
@@ -50,63 +107,73 @@ const ColumnListPage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Main List Column */}
               <div className="lg:col-span-2 space-y-12">
-                {BLOG_POSTS.map((post) => (
-                  <article
-                    key={post.id}
-                    className="group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
-                  >
-                    <Link
-                      href={`/column/${post.id}`}
-                      className="flex flex-col md:flex-row"
+                {isLoading ? (
+                  <div className="text-center py-20">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-2 border-salon-pink border-t-transparent"></div>
+                    <p className="mt-4 text-sm text-gray-400">読み込み中...</p>
+                  </div>
+                ) : filteredPosts.length === 0 ? (
+                  <div className="text-center py-20 bg-white rounded-[32px] border border-gray-100 italic text-gray-400">
+                    記事が見つかりませんでした
+                  </div>
+                ) : (
+                  filteredPosts.map((post) => (
+                    <article
+                      key={post.id}
+                      className="group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
                     >
-                      <div className="md:w-1/3 overflow-hidden">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-48 md:h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                      </div>
-                      <div className="md:w-2/3 p-8 flex flex-col justify-between">
-                        <div>
-                          <div className="flex items-center gap-4 mb-4">
-                            <span className="text-[10px] font-bold text-salon-pink bg-salon-pink/5 px-2 py-0.5 rounded uppercase tracking-tighter">
-                              Management
-                            </span>
-                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                              <Calendar size={12} /> {post.date}
-                            </div>
-                          </div>
-                          <h2 className="text-lg font-bold text-gray-800 mb-4 group-hover:text-salon-pink transition-colors line-clamp-2 leading-relaxed">
-                            {post.title}
-                          </h2>
-                          <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed mb-6">
-                            {post.excerpt}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs font-bold text-salon-pink tracking-wider">
-                          READ MORE{" "}
-                          <ArrowRight
-                            size={14}
-                            className="group-hover:translate-x-2 transition-transform"
+                      <Link
+                        href={`/column/${post.id}`}
+                        className="flex flex-col md:flex-row"
+                      >
+                        <div className="md:w-1/3 overflow-hidden">
+                          <img
+                            src={post.image_url || "/images/placeholder.png"}
+                            alt={post.title}
+                            className="w-full h-48 md:h-full object-cover group-hover:scale-110 transition-transform duration-700"
                           />
                         </div>
-                      </div>
-                    </Link>
-                  </article>
-                ))}
+                        <div className="md:w-2/3 p-8 flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center gap-4 mb-4">
+                              <span className="text-[10px] font-bold text-salon-pink bg-salon-pink/5 px-2 py-0.5 rounded uppercase tracking-tighter">
+                                {post.category}
+                              </span>
+                              <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
+                                <Calendar size={12} />{" "}
+                                {post.published_at &&
+                                  formatDate(post.published_at)}
+                              </div>
+                            </div>
+                            <h2 className="text-lg font-bold text-gray-800 mb-4 group-hover:text-salon-pink transition-colors line-clamp-2 leading-relaxed">
+                              {post.title}
+                            </h2>
+                            <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed mb-6">
+                              {post.excerpt}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs font-bold text-salon-pink tracking-wider">
+                            READ MORE{" "}
+                            <ArrowRight
+                              size={14}
+                              className="group-hover:translate-x-2 transition-transform"
+                            />
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  ))
+                )}
 
                 {/* Pagination - Dummy */}
-                <div className="flex justify-center gap-2 pt-10">
-                  <button className="w-10 h-10 rounded-full bg-salon-pink text-white flex items-center justify-center font-bold text-sm shadow-md">
-                    1
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-white border border-gray-100 text-gray-400 flex items-center justify-center font-bold text-sm hover:border-salon-pink hover:text-salon-pink transition-all">
-                    2
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-white border border-gray-100 text-gray-400 flex items-center justify-center font-bold text-sm hover:border-salon-pink hover:text-salon-pink transition-all">
-                    <ChevronRight size={18} />
-                  </button>
-                </div>
+                {!isLoading && filteredPosts.length > 0 && (
+                  <div className="flex justify-center gap-2 pt-10">
+                    <button className="w-10 h-10 rounded-full bg-salon-pink text-white flex items-center justify-center font-bold text-sm shadow-md">
+                      1
+                    </button>
+                    {/* Add more paging logic if needed later */}
+                  </div>
+                )}
               </div>
 
               {/* Sidebar Column */}
@@ -120,6 +187,8 @@ const ColumnListPage: React.FC = () => {
                     <input
                       type="text"
                       placeholder="キーワードを入力"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       className="w-full bg-salon-light border border-salon-tan/30 rounded-full px-6 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-salon-pink/20"
                     />
                   </div>
@@ -131,23 +200,18 @@ const ColumnListPage: React.FC = () => {
                     <Tag size={16} /> CATEGORY
                   </h3>
                   <ul className="space-y-4">
-                    {[
-                      "経営ノウハウ",
-                      "集客・マーケティング",
-                      "スタッフ採用・育成",
-                      "業界ニュース",
-                    ].map((cat, i) => (
+                    {categories.map((cat, i) => (
                       <li key={i}>
-                        <Link
-                          href="#"
-                          className="flex items-center justify-between text-sm text-gray-500 hover:text-salon-pink transition-colors group"
+                        <button
+                          onClick={() => setSearchTerm(cat)}
+                          className="w-full flex items-center justify-between text-sm text-gray-500 hover:text-salon-pink transition-colors group"
                         >
                           {cat}{" "}
                           <ChevronRight
                             size={14}
                             className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
                           />
-                        </Link>
+                        </button>
                       </li>
                     ))}
                   </ul>

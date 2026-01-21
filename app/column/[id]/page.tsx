@@ -1,7 +1,8 @@
 "use client";
 
 import Layout from "@/components/Layout";
-import { BLOG_POSTS } from "@/constants";
+import { createClient } from "@/utils/supabase/client";
+import MDEditor from "@uiw/react-md-editor";
 import {
   ChevronRight,
   Clock,
@@ -15,12 +16,125 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  image_url: string | null;
+  published_at: string | null;
+  created_at: string;
+}
 
 const ColumnDetailPage: React.FC = () => {
   const params = useParams();
   const id = params?.id as string;
-  const post = BLOG_POSTS.find((p) => p.id === id) || BLOG_POSTS[0];
+
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    // Fetch current post
+    const { data: currentPost, error: postError } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (postError) {
+      console.error("Error fetching post:", postError);
+    } else {
+      setPost(currentPost);
+    }
+
+    // Fetch recent posts
+    const { data: recent, error: recentError } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .not("published_at", "is", null)
+      .order("published_at", { ascending: false })
+      .limit(5);
+
+    if (recentError) {
+      console.error("Error fetching recent posts:", recentError);
+    } else {
+      setRecentPosts(recent || []);
+    }
+
+    // Fetch categories (unique values)
+    const { data: cats, error: catsError } = await supabase
+      .from("blog_posts")
+      .select("category")
+      .not("published_at", "is", null);
+
+    if (catsError) {
+      console.error("Error fetching categories:", catsError);
+    } else {
+      const uniqueCats = Array.from(
+        new Set(cats?.map((p: any) => p.category) || []),
+      ) as string[];
+      setCategories(uniqueCats);
+    }
+
+    setIsLoading(false);
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\//g, ".");
+  };
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="bg-[#f9fbf9] min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-salon-pink border-t-transparent"></div>
+            <p className="mt-4 text-gray-500 font-sans">読み込み中...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!post) {
+    return (
+      <Layout>
+        <div className="bg-[#f9fbf9] min-h-screen flex items-center justify-center font-sans">
+          <div className="text-center">
+            <p className="text-gray-500 mb-6">記事が見つかりませんでした</p>
+            <Link
+              href="/column"
+              className="bg-salon-pink text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-salon-pink/80 transition-all"
+            >
+              コラム一覧に戻る
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -65,7 +179,8 @@ const ColumnDetailPage: React.FC = () => {
                 </h1>
                 <div className="flex items-center gap-4 text-[11px] text-gray-400 border-t border-gray-50 pt-4">
                   <span className="flex items-center gap-1">
-                    <Clock size={12} /> {post.date}
+                    <Clock size={12} />{" "}
+                    {post.published_at && formatDate(post.published_at)}
                   </span>
                   <span className="flex items-center gap-1">
                     <User size={12} /> SalonConciergeAdmin
@@ -73,70 +188,24 @@ const ColumnDetailPage: React.FC = () => {
                 </div>
               </header>
 
-              <div className="mb-12 rounded-xl overflow-hidden shadow-lg border-4 border-white">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-
-              <div className="prose prose-sm md:prose-base max-w-none text-gray-700 leading-relaxed space-y-8">
-                <p>
-                  メンズエステ経営で「もう少し売上を伸ばしたい」と考えたとき、まず見直したいのが営業時間です。
-                </p>
-                <p>
-                  午前中や深夜早朝は一定の需要があり、その時間に問い合わせを受けられる体制を整えるだけで、売上を大きく伸ばせる可能性があります。今回は、営業時間拡大のメリットと課題、そして受付代行を活用して効率的に売上を最大化する方法をご紹介いたします。
-                </p>
-
-                {/* TOC Box */}
-                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
-                  <p className="text-center font-bold text-gray-800 mb-4 text-lg">
-                    目次{" "}
-                    <span className="text-sm font-normal text-gray-400">
-                      [閉じる]
-                    </span>
-                  </p>
-                  <ol className="space-y-3 text-sm text-salon-pink font-bold list-decimal pl-6">
-                    <li>
-                      <span className="hover:underline cursor-pointer">
-                        営業時間を延ばすことで売上アップが期待できる理由
-                      </span>
-                    </li>
-                    <li>
-                      <span className="hover:underline cursor-pointer">
-                        営業時間を長くする際の課題は受付対応
-                      </span>
-                    </li>
-                    <li>
-                      <span className="hover:underline cursor-pointer">
-                        受付代行を活用して、機会損失を防ごう
-                      </span>
-                    </li>
-                    <li>
-                      <span className="hover:underline cursor-pointer">
-                        まとめ：営業時間拡大×受付代行で売上を最大化
-                      </span>
-                    </li>
-                  </ol>
+              {post.image_url && (
+                <div className="mb-12 rounded-xl overflow-hidden shadow-lg border-4 border-white">
+                  <img
+                    src={post.image_url}
+                    alt={post.title}
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
+              )}
 
-                <h2 className="text-2xl font-bold text-gray-800 border-l-8 border-salon-pink pl-4 mt-16 mb-8 py-1 bg-gray-50">
-                  営業時間を延ばすことで売上アップが期待できる理由
-                </h2>
-                <p>
-                  出勤前や仕事終わりなど、実はメンズエステの隠れた人気時間帯が「午前中」です。午前中は比較的空いているため、落ち着いた時間を好むお客様からの予約が多く、深夜帯は一日の疲れを癒したいお客様が集中します。
-                </p>
-
-                <h3 className="text-xl font-bold text-gray-800 border-b-2 border-salon-pink inline-block pb-1 mt-10 mb-6">
-                  午前中や深夜帯は予約のチャンスが多い
-                </h3>
-                <p>
-                  特にメンズエステでは、「出勤前にリフレッシュしたい」「夜の仕事が終わった後に癒されたい」とご来店されるお客様が多く、朝や深夜の時間は潜在的な予約チャンスが多在します。
-                </p>
+              <div className="prose prose-sm md:prose-base max-w-none text-gray-700 leading-relaxed">
+                <MDEditor.Markdown
+                  source={post.content}
+                  style={{ backgroundColor: "transparent" }}
+                />
 
                 {/* Fake Link Box */}
-                <div className="bg-salon-pink/5 border border-salon-pink/20 p-6 rounded-lg text-sm">
+                <div className="bg-salon-pink/5 border border-salon-pink/20 p-6 rounded-lg text-sm mt-12">
                   <Link
                     href="/contact"
                     className="text-salon-pink font-bold flex items-center gap-2 hover:underline"
@@ -144,13 +213,6 @@ const ColumnDetailPage: React.FC = () => {
                     <CornerDownRight size={14} /> 受付代行はこちらからご相談
                   </Link>
                 </div>
-
-                <h2 className="text-2xl font-bold text-gray-800 border-l-8 border-salon-pink pl-4 mt-16 mb-8 py-1 bg-gray-50">
-                  営業時間を長くする際の課題は受付対応
-                </h2>
-                <p>
-                  営業時間を広げると、その分だけ電話やLINEの問い合わせも増加します。しかし、スタッフが少ないと対応が追いつかず、せっかくの予約チャンスを逃してしまうことになります。
-                </p>
 
                 {/* Share Buttons */}
                 <div className="mt-20 border-t border-gray-100 pt-10">
@@ -187,27 +249,30 @@ const ColumnDetailPage: React.FC = () => {
                 関連記事
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {BLOG_POSTS.slice(0, 4).map((post) => (
-                  <Link
-                    key={post.id}
-                    href={`/column/${post.id}`}
-                    className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex gap-4 hover:shadow-md transition-shadow"
-                  >
-                    <img
-                      src={post.image}
-                      className="w-24 h-24 object-cover rounded flex-shrink-0"
-                      alt={post.title}
-                    />
-                    <div>
-                      <h3 className="text-sm font-bold text-gray-800 leading-tight mb-2 line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <span className="text-[10px] text-gray-400">
-                        {post.date}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                {recentPosts
+                  .filter((rp) => rp.id !== id)
+                  .slice(0, 4)
+                  .map((rp) => (
+                    <Link
+                      key={rp.id}
+                      href={`/column/${rp.id}`}
+                      className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex gap-4 hover:shadow-md transition-shadow"
+                    >
+                      <img
+                        src={rp.image_url || "/images/placeholder.png"}
+                        className="w-24 h-24 object-cover rounded flex-shrink-0"
+                        alt={rp.title}
+                      />
+                      <div>
+                        <h3 className="text-sm font-bold text-gray-800 leading-tight mb-2 line-clamp-2">
+                          {rp.title}
+                        </h3>
+                        <span className="text-[10px] text-gray-400">
+                          {rp.published_at && formatDate(rp.published_at)}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
               </div>
             </section>
 
@@ -220,22 +285,26 @@ const ColumnDetailPage: React.FC = () => {
             </section>
           </div>
 
-          {/* Sidebar (Reproduced from list page) */}
+          {/* Sidebar */}
           <aside className="lg:w-80 space-y-12">
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
               <h3 className="text-sm font-bold text-gray-700 mb-4 border-l-4 border-salon-pink pl-3">
                 検索
               </h3>
-              <div className="flex">
+              <form action="/column" method="GET" className="flex">
                 <input
                   type="text"
+                  name="q"
                   placeholder="キーワードを入力"
                   className="flex-1 bg-gray-50 border border-gray-200 rounded-l px-3 py-2 text-sm focus:outline-none"
                 />
-                <button className="bg-gray-800 text-white px-4 rounded-r hover:bg-gray-700 transition-colors">
+                <button
+                  type="submit"
+                  className="bg-gray-800 text-white px-4 rounded-r hover:bg-gray-700 transition-colors"
+                >
                   <Search size={16} />
                 </button>
-              </div>
+              </form>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
@@ -243,7 +312,7 @@ const ColumnDetailPage: React.FC = () => {
                 最近の投稿
               </h3>
               <ul className="space-y-4">
-                {BLOG_POSTS.slice(0, 5).map((p) => (
+                {recentPosts.map((p) => (
                   <li
                     key={p.id}
                     className="pb-4 border-b border-gray-50 last:border-0"
@@ -268,14 +337,10 @@ const ColumnDetailPage: React.FC = () => {
                 カテゴリー
               </h3>
               <ul className="space-y-3">
-                {[
-                  "メンズエステについて",
-                  "メンズエステ経営について",
-                  "電話代行について",
-                ].map((cat) => (
+                {categories.map((cat) => (
                   <li key={cat}>
                     <Link
-                      href="/column"
+                      href={`/column?c=${cat}`}
                       className="text-sm text-gray-600 hover:text-salon-pink transition-colors flex items-center gap-2"
                     >
                       <ChevronRight size={12} className="text-gray-300" /> {cat}

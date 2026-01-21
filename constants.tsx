@@ -36,58 +36,7 @@ export const NAV_LINKS = [
   { name: "コラム", path: "/column" },
 ];
 
-export const BLOG_POSTS = [
-  {
-    id: "1",
-    title: "メンズエステの営業時間について",
-    date: "2025.12.05",
-    category: "メンズエステについて",
-    excerpt:
-      "メンズエステ経営で「もう少し売上を伸ばしたい」と考えたとき、まず見直したいのが営業時間です。午前中や深夜早朝は集客が厳しいと思われがちであり、その時間に問い合わせを受けられる体制を整えるだけで、売上を大きく伸ばせる可能性があります。",
-    image:
-      "https://images.unsplash.com/photo-1573163231162-80111d4d41d9?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: "2",
-    title: "人気のあるセラピストさんの特徴とは？",
-    date: "2025.10.16",
-    category: "メンズエステについて",
-    excerpt:
-      "メンズエステに訪れるお客様は「心も体も癒されたい」との思いから足を運ばれる方が多いと思います。マッサージ技術や高いセラピストさんに越したことはない心地よいものですが、実際に「何度も通いたい」と思う大人気セラピストさんには...",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: "3",
-    title: "女の子が働きやすいメンズエステ店の探し方",
-    date: "2025.09.17",
-    category: "メンズエステ経営について",
-    excerpt:
-      "メンズエステの求人が数多くある中で、安心して使い続けられるお店選びが大切です。求人情報から自分に合った働きやすいお店を選ぶポイントをご紹介いたします。",
-    image:
-      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: "4",
-    title: "IP電話の番号貸与サービスを解説！",
-    date: "2025.08.08",
-    category: "電話代行について",
-    excerpt:
-      "IP電話はインターネット回線を利用した通信手段で、通話料の安さや柔軟な運用などが魅力。メンズエステ運営に利用されており、IP電話番号の貸与サービスについて解説します。",
-    image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: "5",
-    title: "SalonConciergeが比較サイトでランキング1位に選ばれました！",
-    date: "2025.06.19",
-    category: "メンズエステ経営について",
-    excerpt:
-      "SalonConciergeがメンズエステ専門電話受付代行の比較サイトでランキング1位に選ばれました！様々な電話代行業者が存在する中、選ばれた理由を本記事でご紹介いたします。",
-    image:
-      "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=800",
-  },
-];
+export const BLOG_POSTS = [];
 
 export const STATS = [
   { label: "契約継続率", value: "98.2%", note: "(※1)" },
