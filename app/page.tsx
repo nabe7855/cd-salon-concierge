@@ -102,56 +102,80 @@ const FLOW_STEPS = [
 
 const PREPARATION_ITEMS = [
   {
-    title: "ご予約受付用スマートフォン",
+    title: (
+      <>
+        <span className="inline-block">ご予約受付用</span>
+        <span className="inline-block">スマートフォン</span>
+      </>
+    ),
     desc: (
       <>
         <span className="inline-block">転送設定済みの端末を</span>
         <span className="inline-block">1台ご用意ください。</span>
         <span className="inline-block">端末本体を弊社へ</span>
-        <span className="inline-block">お預けいただく必要はありません。</span>
+        <span className="inline-block">お預けいただく必要は</span>
+        <span className="inline-block">ありません。</span>
         <span className="inline-block">また、弊社から無料の</span>
         <span className="inline-block">IP電話番号を発行し、</span>
         <span className="inline-block">そちらを店舗番号として</span>
-        <span className="inline-block">ご利用いただくことも可能です。</span>
+        <span className="inline-block">ご利用いただくことも</span>
+        <span className="inline-block">可能です。</span>
       </>
     ),
     icon: Smartphone,
   },
   {
-    title: "予約受付用公式LINE",
+    title: (
+      <>
+        <span className="inline-block">予約受付用</span>
+        <span className="inline-block">公式LINE</span>
+      </>
+    ),
     desc: (
       <>
         <span className="inline-block">LINEでの予約対応を</span>
         <span className="inline-block">ご希望の場合は、</span>
         <span className="inline-block">公式アカウントの作成を</span>
         <span className="inline-block">お願いしております。</span>
-        <span className="inline-block">アカウント開設の手続きが</span>
-        <span className="inline-block">不安な場合は、</span>
+        <span className="inline-block">アカウント開設の</span>
+        <span className="inline-block">手続きが不安な場合は、</span>
         <span className="inline-block">弊社スタッフによる</span>
-        <span className="inline-block">代理作成サポートも承っております。</span>
+        <span className="inline-block">代理作成サポートも</span>
+        <span className="inline-block">承っております。</span>
       </>
     ),
     icon: MessageCircle,
   },
   {
-    title: "営業用ホームページ",
+    title: (
+      <>
+        <span className="inline-block">営業用</span>
+        <span className="inline-block">ホームページ</span>
+      </>
+    ),
     desc: (
       <>
         <span className="inline-block">集客の要となるサイトを</span>
         <span className="inline-block">お持ちでない場合、</span>
         <span className="inline-block">弊社で顧客管理システムと</span>
+        <br className="md:hidden" />
         <span className="inline-block">リアルタイムに連動する</span>
-        <span className="inline-block">
-          高機能なホームページを制作可能です。
-        </span>
+        <span className="inline-block">高機能なホームページを</span>
+        <span className="inline-block">制作可能です。</span>
         <span className="inline-block">管理コストを抑えつつ、</span>
-        <span className="inline-block">予約の自動取り込みを実現します。</span>
+        <span className="inline-block">予約の自動取り込みを</span>
+        <span className="inline-block">実現します。</span>
       </>
     ),
     icon: Globe,
   },
   {
-    title: "既存の顧客データ",
+    title: (
+      <>
+        <span className="inline-block">既存の</span>
+        <span className="inline-block">顧客データ</span>
+      </>
+    ),
     desc: (
       <>
         <span className="inline-block">既に営業中の店舗様は、</span>
