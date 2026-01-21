@@ -91,6 +91,7 @@ const LoginPage: React.FC = () => {
                   <Mail size={18} />
                 </div>
                 <input
+                  suppressHydrationWarning
                   type="email"
                   required
                   value={email}
@@ -119,6 +120,7 @@ const LoginPage: React.FC = () => {
                   <Lock size={18} />
                 </div>
                 <input
+                  suppressHydrationWarning
                   type={showPassword ? "text" : "password"}
                   required
                   value={password}

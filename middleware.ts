@@ -6,11 +6,26 @@ export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/admin")) {
     // Matches /admin and /admin/*
     const adminCookie = request.cookies.get("admin_logged_in");
+    console.log(`[Middleware] Check Path: ${request.nextUrl.pathname}`);
+    console.log(
+      `[Middleware] Cookie 'admin_logged_in':`,
+      adminCookie ? adminCookie.value : "MISSING",
+    );
+    console.log(
+      `[Middleware] All Cookies:`,
+      request.cookies
+        .getAll()
+        .map((c) => `${c.name}=${c.value}`)
+        .join("; "),
+    );
 
     // If cookie is missing explicitly or not "true"
     if (!adminCookie || adminCookie.value !== "true") {
+      console.log("[Middleware] Access DENIED -> Redirecting to /login");
       return NextResponse.redirect(new URL("/login", request.url));
     }
+    console.log("[Middleware] Access GRANTED - Bypassing Supabase Check");
+    return NextResponse.next();
   }
 
   return await updateSession(request);
