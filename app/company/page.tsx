@@ -130,27 +130,56 @@ const CompanyPage: React.FC = () => {
                   <Sparkles size={24} />
                 </div>
                 <h3 className="text-xl md:text-3xl font-bold text-gray-800 leading-tight mb-8">
-                  「声のホスピタリティで、
-                  <br />
-                  サロンに新しい価値を。」
+                  <span className="inline-block">「声のホスピタリティで、</span>
+                  <span className="inline-block">サロンに新しい価値を。」</span>
                 </h3>
                 <div className="space-y-6 text-gray-600 leading-loose text-lg">
                   <p>
-                    SalonConciergeは、単なる電話代行にとどまらず、
+                    <span className="inline-block">SalonConciergeは、</span>
+                    <span className="inline-block">
+                      単なる電話代行にとどまらず、
+                    </span>
                     <br />
-                    サロンの“顔”としてお客様と繋がる第一線を担っています。
+                    <span className="inline-block">サロンの“顔”として</span>
+                    <span className="inline-block">お客様と繋がる第一線を</span>
+                    <span className="inline-block">担っています。</span>
                   </p>
                   <p className="text-sm md:text-base opacity-80">
-                    私たちは、店舗様・セラピスト様・お客様すべてにとって心地よい体験を届けるため、
-                    <br />
-                    「丁寧な応対」「正確な情報提供」「臨機応変な対応力」を軸に、
-                    <br />
-                    業界最高水準のサービスを目指します。
+                    <span className="inline-block">
+                      私たちは、店舗様・セラピスト様・
+                    </span>
+                    <span className="inline-block">お客様すべてにとって</span>
+                    <span className="inline-block">
+                      心地よい体験を届けるため、
+                    </span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">
+                      「丁寧な応対」「正確な情報提供」
+                    </span>
+                    <span className="inline-block">
+                      「臨機応変な対応力」を軸に、
+                    </span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">
+                      業界最高水準のサービスを
+                    </span>
+                    <span className="inline-block">目指します。</span>
                   </p>
                   <div className="pt-6 border-t border-gray-100 italic font-medium text-botanical-primary">
-                    メンズエステ業界に特化した豊富な知見と実績を活かし、
+                    <span className="inline-block">
+                      メンズエステ業界に特化した
+                    </span>
+                    <span className="inline-block">
+                      豊富な知見と実績を活かし、
+                    </span>
                     <br />
-                    クライアント様の売上とブランド価値の最大化を支える“パートナー”であり続けます。
+                    <span className="inline-block">クライアント様の売上と</span>
+                    <span className="inline-block">
+                      ブランド価値の最大化を支える
+                    </span>
+                    <span className="inline-block">
+                      “パートナー”であり続けます。
+                    </span>
                   </div>
                 </div>
               </div>
@@ -272,7 +301,6 @@ const CompanyPage: React.FC = () => {
                   { label: "従業員数", content: "20名" },
                   { label: "資本金", content: "500万円" },
                   { label: "取引銀行", content: "GMOあおぞら銀行" },
-
                 ].map((row, idx) => (
                   <div
                     key={idx}

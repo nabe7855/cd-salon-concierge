@@ -103,22 +103,67 @@ const FLOW_STEPS = [
 const PREPARATION_ITEMS = [
   {
     title: "ご予約受付用スマートフォン",
-    desc: "転送設定済みの端末を1台ご用意ください。端末本体を弊社へお預けいただく必要はありません。また、弊社から無料のIP電話番号を発行し、そちらを店舗番号としてご利用いただくことも可能です。",
+    desc: (
+      <>
+        <span className="inline-block">転送設定済みの端末を</span>
+        <span className="inline-block">1台ご用意ください。</span>
+        <span className="inline-block">端末本体を弊社へ</span>
+        <span className="inline-block">お預けいただく必要はありません。</span>
+        <span className="inline-block">また、弊社から無料の</span>
+        <span className="inline-block">IP電話番号を発行し、</span>
+        <span className="inline-block">そちらを店舗番号として</span>
+        <span className="inline-block">ご利用いただくことも可能です。</span>
+      </>
+    ),
     icon: Smartphone,
   },
   {
     title: "予約受付用公式LINE",
-    desc: "LINEでの予約対応をご希望の場合は、公式アカウントの作成をお願いしております。アカウント開設の手続きが不安な場合は、弊社スタッフによる代理作成サポートも承っております。",
+    desc: (
+      <>
+        <span className="inline-block">LINEでの予約対応を</span>
+        <span className="inline-block">ご希望の場合は、</span>
+        <span className="inline-block">公式アカウントの作成を</span>
+        <span className="inline-block">お願いしております。</span>
+        <span className="inline-block">アカウント開設の手続きが</span>
+        <span className="inline-block">不安な場合は、</span>
+        <span className="inline-block">弊社スタッフによる</span>
+        <span className="inline-block">代理作成サポートも承っております。</span>
+      </>
+    ),
     icon: MessageCircle,
   },
   {
     title: "営業用ホームページ",
-    desc: "集客の要となるサイトをお持ちでない場合、弊社で顧客管理システムとリアルタイムに連動する高機能なホームページを制作可能です。管理コストを抑えつつ、予約の自動取り込みを実現します。",
+    desc: (
+      <>
+        <span className="inline-block">集客の要となるサイトを</span>
+        <span className="inline-block">お持ちでない場合、</span>
+        <span className="inline-block">弊社で顧客管理システムと</span>
+        <span className="inline-block">リアルタイムに連動する</span>
+        <span className="inline-block">
+          高機能なホームページを制作可能です。
+        </span>
+        <span className="inline-block">管理コストを抑えつつ、</span>
+        <span className="inline-block">予約の自動取り込みを実現します。</span>
+      </>
+    ),
     icon: Globe,
   },
   {
     title: "既存の顧客データ",
-    desc: "既に営業中の店舗様は、現在お使いの顧客情報の移行が可能です。電話帳、CSV、エクセル等、様々な形式に対応いたします。お預かりしたデータは機密保持契約に基づき、厳重に管理いたします。",
+    desc: (
+      <>
+        <span className="inline-block">既に営業中の店舗様は、</span>
+        <span className="inline-block">現在お使いの顧客情報の</span>
+        <span className="inline-block">移行が可能です。</span>
+        <span className="inline-block">電話帳、CSV、エクセル等、</span>
+        <span className="inline-block">様々な形式に対応いたします。</span>
+        <span className="inline-block">お預かりしたデータは</span>
+        <span className="inline-block">機密保持契約に基づき、</span>
+        <span className="inline-block">厳重に管理いたします。</span>
+      </>
+    ),
     icon: Database,
   },
 ];
@@ -591,13 +636,22 @@ const TopPage: React.FC = () => {
               <span className="text-botanical-primary font-bold tracking-widest text-xs uppercase mb-3 block opacity-70">
                 PREPARATION
               </span>
-              <h2 className="text-3xl font-bold text-gray-800 font-heading">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 font-heading whitespace-nowrap">
                 代行業務スタートに向けた準備
               </h2>
               <p className="text-gray-500 mt-4 text-sm md:text-base max-w-2xl mx-auto">
-                サービス開始にあたって以下のものをご用意いただきます。
+                <span className="inline-block">サービス開始にあたって</span>
+                <span className="inline-block">
+                  以下のものをご用意いただきます。
+                </span>
                 <br className="hidden md:block" />
-                不足しているものがある場合も、弊社で柔軟にサポートいたしますのでご安心ください。
+                <span className="inline-block">
+                  不足しているものがある場合も、
+                </span>
+                <span className="inline-block">
+                  弊社で柔軟にサポートいたしますので
+                </span>
+                <span className="inline-block">ご安心ください。</span>
               </p>
             </div>
 
