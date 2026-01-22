@@ -130,56 +130,54 @@ const CompanyPage: React.FC = () => {
                   <Sparkles size={24} />
                 </div>
                 <h3 className="text-xl md:text-3xl font-bold text-gray-800 leading-tight mb-8">
-                  <span className="inline-block">「声のホスピタリティで、</span>
-                  <span className="inline-block">サロンに新しい価値を。」</span>
+                  <span className="inline-block">「最高峰の対話力で、</span>
+                  <span className="inline-block">
+                    サロンの可能性を最大化する。」
+                  </span>
                 </h3>
                 <div className="space-y-6 text-gray-600 leading-loose text-lg">
                   <p>
-                    <span className="inline-block">SalonConciergeは、</span>
+                    <span className="inline-block">電話の一本一本に、</span>
                     <span className="inline-block">
-                      単なる電話代行にとどまらず、
+                      サロンの未来が宿っています。
                     </span>
-                    <br />
-                    <span className="inline-block">サロンの“顔”として</span>
-                    <span className="inline-block">お客様と繋がる第一線を</span>
-                    <span className="inline-block">担っています。</span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">私たちはその重要性を</span>
+                    <span className="inline-block">深く理解し、</span>
+                    <span className="inline-block">業界トップクラスの</span>
+                    <span className="inline-block">応対スキルで</span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">
+                      お客様の期待を超える感動を
+                    </span>
+                    <span className="inline-block">届けます。</span>
                   </p>
                   <p className="text-sm md:text-base opacity-80">
                     <span className="inline-block">
-                      私たちは、店舗様・セラピスト様・
+                      「迅速」「正確」「臨機応変」な
                     </span>
-                    <span className="inline-block">お客様すべてにとって</span>
-                    <span className="inline-block">
-                      心地よい体験を届けるため、
-                    </span>
+                    <span className="inline-block">対応は当たり前。</span>
                     <br className="hidden md:block" />
                     <span className="inline-block">
-                      「丁寧な応対」「正確な情報提供」
+                      私たちは、サロンの売上向上と
                     </span>
-                    <span className="inline-block">
-                      「臨機応変な対応力」を軸に、
-                    </span>
+                    <span className="inline-block">ブランド構築に直結する</span>
                     <br className="hidden md:block" />
-                    <span className="inline-block">
-                      業界最高水準のサービスを
-                    </span>
-                    <span className="inline-block">目指します。</span>
+                    <span className="inline-block">戦略的なコンシェルジュ</span>
+                    <span className="inline-block">サービスを目指します。</span>
                   </p>
                   <div className="pt-6 border-t border-gray-100 italic font-medium text-botanical-primary">
+                    <span className="inline-block">メンズエステ特有の</span>
+                    <span className="inline-block">市場環境を熟知した</span>
+                    <span className="inline-block">専門集団として、</span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">貴社のビジネスに</span>
                     <span className="inline-block">
-                      メンズエステ業界に特化した
+                      確かな付加価値をプラスし、
                     </span>
-                    <span className="inline-block">
-                      豊富な知見と実績を活かし、
-                    </span>
-                    <br />
-                    <span className="inline-block">クライアント様の売上と</span>
-                    <span className="inline-block">
-                      ブランド価値の最大化を支える
-                    </span>
-                    <span className="inline-block">
-                      “パートナー”であり続けます。
-                    </span>
+                    <br className="hidden md:block" />
+                    <span className="inline-block">唯一無二の存在として</span>
+                    <span className="inline-block">支え抜きます。</span>
                   </div>
                 </div>
               </div>
